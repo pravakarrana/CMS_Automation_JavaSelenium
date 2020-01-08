@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="49309" started-at="2020-01-03T15:01:02Z" finished-at="2020-01-03T15:01:52Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="49309" started-at="2020-01-03T15:01:02Z" finished-at="2020-01-03T15:01:52Z">
+      <class name="Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature">
+        <test-method status="PASS" signature="configBc()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature@2aa5fe93]" name="configBc" is-config="true" duration-ms="4501" started-at="2020-01-03T20:31:02Z" finished-at="2020-01-03T20:31:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- configBc -->
+        <test-method status="PASS" signature="configBm()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature@2aa5fe93]" name="configBm" is-config="true" duration-ms="18805" started-at="2020-01-03T20:31:07Z" finished-at="2020-01-03T20:31:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- configBm -->
+        <test-method status="PASS" signature="CMS_E2MTest_BulkUpload_TC05()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature@2aa5fe93]" name="CMS_E2MTest_BulkUpload_TC05" duration-ms="25989" started-at="2020-01-03T20:31:26Z" finished-at="2020-01-03T20:31:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CMS_E2MTest_BulkUpload_TC05 -->
+        <test-method status="PASS" signature="configAm(org.testng.ITestResult)[pri:0, instance:Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature@2aa5fe93]" name="configAm" is-config="true" duration-ms="1" started-at="2020-01-03T20:31:52Z" finished-at="2020-01-03T20:31:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=CMS_E2MTest_BulkUpload_TC05 status=SUCCESS method=CreateEvent_With_Feature.CMS_E2MTest_BulkUpload_TC05()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature@2aa5fe93] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- configAm -->
+        <test-method status="PASS" signature="configAc()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature@2aa5fe93]" name="configAc" is-config="true" duration-ms="0" started-at="2020-01-03T20:31:52Z" finished-at="2020-01-03T20:31:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- configAc -->
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

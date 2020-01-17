@@ -147,19 +147,6 @@ public class EventInfopage extends Baseclass_libraries{
 		intervaltime.sendKeys(interval);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 	
  }

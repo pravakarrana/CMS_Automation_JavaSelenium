@@ -12,7 +12,7 @@ import Com.E2M.ObjectRepository.EventInfopage;
 
 	
 	
-	 @Test
+	 //@Test
      public void CMS_E2MTest_BulkUpload_TC05() throws Throwable  {
 		 String eventname=flib.getexcelData("Event", 1, 0);
 		 String shortname=flib.getexcelData("Event", 1, 1);

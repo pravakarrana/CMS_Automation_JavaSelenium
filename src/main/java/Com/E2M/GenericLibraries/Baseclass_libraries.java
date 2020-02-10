@@ -56,9 +56,9 @@ public class Baseclass_libraries   {
 		 
     	Properties pobj=flib.getpropertiesfileobject();
     	String CMS_URL=pobj.getProperty("URL");
-    	String MCKPRD_actualurl=flib.getexcelData("Varification", 1, 1);
+    	String PRD_actualurl=flib.getexcelData("Varification", 4, 1);
  
-     	if(CMS_URL.equals(MCKPRD_actualurl)) {
+     	if(CMS_URL.equals(PRD_actualurl)) {
     		driver.get(pobj.getProperty("URL"));
     	}
      	else if(CMS_URL.equals("URL")) {

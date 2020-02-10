@@ -2,39 +2,24 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="22587" started-at="2020-01-15T09:47:23Z" finished-at="2020-01-15T09:47:45Z">
+  <suite name="Default suite" duration-ms="24189" started-at="2020-02-07T11:18:32Z" finished-at="2020-02-07T11:18:56Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="22587" started-at="2020-01-15T09:47:23Z" finished-at="2020-01-15T09:47:45Z">
-      <class name="Com.E2M.CMS_Event2MobileTest.Add_VenueTest">
-        <test-method status="PASS" signature="configBc()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Add_VenueTest@548e7350]" name="configBc" is-config="true" duration-ms="5529" started-at="2020-01-15T15:17:23Z" finished-at="2020-01-15T15:17:28Z">
+    <test name="Default test" duration-ms="24189" started-at="2020-02-07T11:18:32Z" finished-at="2020-02-07T11:18:56Z">
+      <class name="Com.E2M.CMS_Event2MobileTest.Findjavascripterror">
+        <test-method status="PASS" signature="setup()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Findjavascripterror@239963d8]" name="setup" is-config="true" duration-ms="3931" started-at="2020-02-07T16:48:32Z" finished-at="2020-02-07T16:48:36Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- configBc -->
-        <test-method status="PASS" signature="configBm()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Add_VenueTest@548e7350]" name="configBm" is-config="true" duration-ms="16555" started-at="2020-01-15T15:17:28Z" finished-at="2020-01-15T15:17:45Z">
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="testmethod()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Findjavascripterror@239963d8]" name="testmethod" duration-ms="20240" started-at="2020-02-07T16:48:36Z" finished-at="2020-02-07T16:48:56Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- configBm -->
-        <test-method status="PASS" signature="CMS_E2MTest_AddVenue_TC014()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Add_VenueTest@548e7350]" name="CMS_E2MTest_AddVenue_TC014" duration-ms="484" started-at="2020-01-15T15:17:45Z" finished-at="2020-01-15T15:17:45Z">
+        </test-method> <!-- testmethod -->
+        <test-method status="PASS" signature="teardown()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Findjavascripterror@239963d8]" name="teardown" is-config="true" duration-ms="0" started-at="2020-02-07T16:48:56Z" finished-at="2020-02-07T16:48:56Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CMS_E2MTest_AddVenue_TC014 -->
-        <test-method status="PASS" signature="configAm(org.testng.ITestResult)[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Add_VenueTest@548e7350]" name="configAm" is-config="true" duration-ms="1" started-at="2020-01-15T15:17:45Z" finished-at="2020-01-15T15:17:45Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=CMS_E2MTest_AddVenue_TC014 status=SUCCESS method=Add_VenueTest.CMS_E2MTest_AddVenue_TC014()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Add_VenueTest@548e7350] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configAm -->
-        <test-method status="PASS" signature="configAc()[pri:0, instance:Com.E2M.CMS_Event2MobileTest.Add_VenueTest@548e7350]" name="configAc" is-config="true" duration-ms="0" started-at="2020-01-15T15:17:45Z" finished-at="2020-01-15T15:17:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configAc -->
-      </class> <!-- Com.E2M.CMS_Event2MobileTest.Add_VenueTest -->
+        </test-method> <!-- teardown -->
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.Findjavascripterror -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

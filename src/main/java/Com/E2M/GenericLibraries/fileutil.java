@@ -1,21 +1,25 @@
 package Com.E2M.GenericLibraries;
 
- 
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
- 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Properties;
 import java.util.Random;
-
-import org.apache.poi.ss.usermodel.Cell;
+ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
  
-      public class fileutil {		
+      public class fileutil extends Baseclass_libraries{		
 		 String filepath="./Data/commondata.properties";
 		 String excelpath="./Data/testdata.xlsx";
 	 
@@ -50,11 +54,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 		 public String WritesetexcelData(String sheetname,int rownum,int celnum,String data) throws Throwable   
 		 {
 			 FileInputStream fis=new FileInputStream(excelpath);
-			  Workbook setwb=new XSSFWorkbook(fis);  
-  			  Sheet shh=setwb.createSheet(sheetname);
- 			        shh.createRow(rownum).createCell(celnum).setCellValue(data);  
+			 Workbook setwb=new XSSFWorkbook(fis);  
+  			 Sheet shh=setwb.createSheet(sheetname);
+ 			       shh.createRow(rownum).createCell(celnum).setCellValue(data);  
 		     FileOutputStream pos=new FileOutputStream(excelpath);
-			        setwb.write(pos);
+			                  setwb.write(pos);
  			 return data;
 		 }
 		 public String setexcelData(String sheetname,int rownum,int celnum,String data) throws Throwable   
@@ -77,4 +81,67 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 				  setwb.write(pos);
  			 return data;
 		 }
+
+		    public boolean getResponseCode(String urlString) {
+		        boolean isValid = false;
+		        try {
+		            URL u = new URL(urlString);
+		            HttpURLConnection h = (HttpURLConnection) u.openConnection();
+		            h.setRequestMethod("HEAD");
+		            h.connect();
+		            int code=h.getResponseCode();
+		            System.out.println(code);
+		            if (code != 400) {
+		                isValid = true;
+		                Assert.assertEquals(code, 200);
+		            }
+ 		        } catch (Exception e) {
+
+		        }
+		    return isValid;
+		    }
+		 public String isLinkBroken(URL url) throws Exception {
+ 			 
+	            String response = " ";
+	 
+	            //Create an instance of HTTP URL connection
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	 
+	            //connect to the URL
+	            connection.connect();
+	 
+	            // get the response
+	            response = connection.getResponseMessage();
+	 
+	            // Disconnect the connection
+	            connection.disconnect();
+	 
+	            return response;
+	 
+	        }
+		    public boolean getErrorpage(String urlsearch) {
+		    	
+ 		          
+		          WebElement img = driver.findElement(By.id("warp"));
+		          String imgpath = img.getCssValue("background-image");     
+		          String expected="error-cms.png";
+		          String done = " ";
+		    	  String[] hope = imgpath.split("https://arrowcms.e2m.live/Images/");
+		 
+		  	        for ( int i = 0; i < hope.length; i++)
+		  	        {
+		  	           done = done + hope[i];
+		  	        }
+		  	           String actual_error=done.substring(6,19);
+		    	       boolean errorpage=actual_error.contains(expected);
+		    	       System.out.println("Error page found : " + errorpage);
+		    	       
+		    	       SoftAssert assrt=new SoftAssert();
+		    	       assrt.assertFalse(actual_error.contains(expected));
+		    	       assrt.assertAll();
+ 		    return errorpage;
+		    }
+		    
+		    
+
 }

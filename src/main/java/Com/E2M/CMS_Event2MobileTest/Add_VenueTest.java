@@ -17,6 +17,18 @@ import Com.E2M.ObjectRepository.Venuepage;
 		 
 		Venuepage vnu=PageFactory.initElements(driver, Venuepage.class);
  		          vnu.ClickParticularEvent();
-		 
+ 		          
+ 		Venuepage addvnue=PageFactory.initElements(driver, Venuepage.class);
+ 		          addvnue.navigateAddVenue();
+ 		          
+ 		Venuepage vnuname=PageFactory.initElements(driver, Venuepage.class);
+		          vnuname.AddVenueName("Karunamayee");
+		          
+	    Venuepage vnuaddr=PageFactory.initElements(driver, Venuepage.class);
+	              vnuaddr.AddAddress();
+		
+//	    Venuepage sv=PageFactory.initElements(driver, Venuepage.class);
+//	              sv.clickOnsave();
+// 		 
 }
 }

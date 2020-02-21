@@ -59,7 +59,7 @@ public class Baseclass_libraries   {
 		System.out.println("Login To Event2Mobile");
 		 
     	Properties pobj=flib.getpropertiesfileobject();
-    	String CMS_URL=pobj.getProperty("TRULIANTURL");
+    	String CMS_URL=pobj.getProperty("MCKURL");
     	String PRD_MCKurl=flib.getexcelData("Varification", 1, 1);
     	String PRD_ARROWurl=flib.getexcelData("Varification", 2, 1);
     	String PRD_TRULIANTurl=flib.getexcelData("Varification", 4, 1);

@@ -1,7 +1,10 @@
 package Com.E2M.ObjectRepository;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 
+import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.poi.hssf.util.HSSFColor.AQUA;
 import org.eclipse.jetty.util.log.Log;
 import org.openqa.selenium.Alert;
@@ -17,6 +20,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 
 import Com.E2M.GenericLibraries.Baseclass_libraries;
 
@@ -59,8 +64,29 @@ import Com.E2M.GenericLibraries.Baseclass_libraries;
 	          @FindBy(xpath="//ul[@class='menu-3rd-level clearfix']//li//a[text()='Useful Info ']")
 	          private WebElement clickonusefulinfo;
 	          
+	          @FindBy(xpath="//a[text()='Add New']")
+	          private WebElement AddNewusefulinfo;
+	          
+	          @FindBy(xpath="//input[@title='First Name']")
+	          private WebElement Useful_Name;
+	         
+	          @FindBy(xpath="//input[@placeholder='Add tag']")
+	          private WebElement Useful_tag;
+	         
+	          @FindBy(xpath="//body[@class='mceContentBody ']")
+	          private WebElement Useful_Description;
+	          
 	          @FindBy(xpath="//input[@value='Import']")
 	          private WebElement ImportusefulInfo;
+ 	          
+	          @FindBy(xpath="//div[contains(@id,'ContentPlaceHolder')]//div//div//table//tbody//tr//td//a[contains(text(),'')]")
+	          private List<WebElement> Verifyusefulinfo;
+	          
+	          @FindBy(xpath="//ul[@class='menu-3rd-level clearfix']//li//a[text()='Disclaimer']")
+	          private WebElement ClickonDisclaimer;
+	         
+	          @FindBy(xpath="//input[contains(@id,'ContentPlaceHolder1_radioButtonListIsUsedByEvent_0')]")
+	          private WebElement ClickonRadioButton;
 	          
 	      	  @FindBy(xpath="//div[@class='menu-toggle-link clearfix']//a[@class='toggle-menu']")
 	    	  private WebElement clickonmenu;
@@ -77,6 +103,8 @@ import Com.E2M.GenericLibraries.Baseclass_libraries;
 	      	  @FindBy(xpath="//div[contains(@id,'ContentPlaceHolder')]//div//table//tbody//tr//td//a[contains(text(),'')]")
 	    	  private List<WebElement> Managevenuepage;
 	      	 
+	      	  @FindBy(xpath="//span[contains(text(),'Title already exists.')]")
+	    	  private WebElement GettingError;
 	
 	       //Methods or Functions
 	       public void ClickParticularEvent() throws Throwable   {
@@ -92,41 +120,72 @@ import Com.E2M.GenericLibraries.Baseclass_libraries;
  		               {
   			             String alleventaname=ClickEvent.get(i).getText();
   			                    //System.out.println(alleventaname);
-  			                    
-    		                 if(alleventaname.contains(Event)) {
+     		                 if(alleventaname.contains(Event)) {
     				         String Expected=ClickEvent.get(i).getText();
      				         ClickEvent.get(i).click();
     				         flag=true;
     			             break;  			  
-     			           }
- 		                }	
-    	                if(flag==true) {
+     			             }
+ 		               }	
+    	               if(flag==true) {
   		                   Assert.assertEquals(flag, true);
   		                   System.out.println(Event + " Event available");
   		                   Reporter.log(Event + " Event available ");
-                       }else {
+                      }else {
   		                   System.out.println(Event + " Event not avalable");
   		                   Reporter.log(Event + " Event not available ");
   		                 }
   		                 Assert.assertEquals(flag, true);
   		                 System.out.println("Sucessfully enter to the event");
-	             } catch (AssertionError e) {
+	             }catch (AssertionError e) {
 		              System.out.println("Particular event is not found.");
 		              System.out.println("Please Check the event");
 		              throw(e);
 	            }
            }
            public void navigateAddVenue() {
-		         ClickAddVenue.click();
+		            ClickAddVenue.click();
  	       }
            public void navigateUsefulInfo() {
-            	 clickonusefulinfo.click();
+            	  clickonusefulinfo.click();
  	       }
+           public void NewAddUsefulInfo() {
+        	     AddNewusefulinfo.click();
+	       }
+           public void EnterUsefulInfo_Name(String name,String tag) throws Throwable {
+        	            Useful_Name.sendKeys(name);
+        	            Useful_tag.sendKeys(tag);
+             JavascriptExecutor js = (JavascriptExecutor) driver;
+             js.executeScript("window.scrollBy(0,1000)");
+        	 Thread.sleep(1000);
+           }
+           public void EnterUsefulInfo_Description() throws Throwable {
+        	   
+        	   WebElement iframe = driver.findElement(By.id("txtDescription_ifr"));
+        	   driver.switchTo().frame(iframe);
+         	   WebElement description1 = driver.findElement(By.cssSelector("body"));
+        	   ((JavascriptExecutor)driver).executeScript("arguments[0].innerHTML = '<h1>proud to be an indian</h1>'", description1);
+        	   driver.switchTo().defaultContent();
+           } 
+ 		   public void verifyusefulinfo() {
+         	   for(int i=0;i<=Verifyusefulinfo.size()-1;i++) {
+        		   String actual=Verifyusefulinfo.get(i).getText();
+        		   if(actual.equals("ARMY2")) {
+         		   System.out.println(actual);
+         	       }
+         	   }
+           } 
+           public void navigateDisclaimer() {
+        	   ClickonDisclaimer.click();
+           } 
+           public void Clickonradionbutton() {
+        	   ClickonRadioButton.click();
+           }
            public void navigateUsefulInfoImport() {
-            	 ImportusefulInfo.click();
+            	         ImportusefulInfo.click();
  	       }
            public void navigateTomenu() {
-            	 clickonmenu.click();
+            	    clickonmenu.click();
  	       }
            public void ClickonAgenda() {
              	 for(int i=0;i<=clickonAgenda.size()-1;i++) {
@@ -214,9 +273,17 @@ import Com.E2M.GenericLibraries.Baseclass_libraries;
        			} 
  	       }
            public void clickOnsave() {
-              	 save.click();
-	         }
-   	}
+        	   save.click();
+        	   try {
+        	   boolean flag=true;
+        	   if(GettingError.getText().contains("Title already exists."))
+        	   { 
+        		   System.out.println(GettingError.getText() + " Getting Error : " + flag);
+        	   }
+        	   }catch (Exception e) {
+        	   }
+ 	         }
+       	   }
 	
  
 	

@@ -26,9 +26,30 @@ import Com.E2M.ObjectRepository.Venuepage;
 		          
 	    Venuepage vnuaddr=PageFactory.initElements(driver, Venuepage.class);
 	              vnuaddr.AddAddress();
-		
-//	    Venuepage sv=PageFactory.initElements(driver, Venuepage.class);
-//	              sv.clickOnsave();
-// 		 
-}
+	              
+	    Venuepage sv=PageFactory.initElements(driver, Venuepage.class);
+	              sv.clickOnsave();         
+	               
+	    Venuepage edit=PageFactory.initElements(driver, Venuepage.class);
+	              edit.ClickonEditManagevenuepage();
+	   
+	    Venuepage lat=PageFactory.initElements(driver, Venuepage.class);
+	              lat.CheckLatitude();
+	              
+	    Venuepage lan=PageFactory.initElements(driver, Venuepage.class);
+	              lan.CheckLongitude();
+	              
+	    Venuepage pcode=PageFactory.initElements(driver, Venuepage.class);
+	              pcode.CheckZip_Post_Code();
+	              
+	    Venuepage cty=PageFactory.initElements(driver, Venuepage.class);
+	              cty.CheckCity();
+	              
+	    Venuepage cnty=PageFactory.initElements(driver, Venuepage.class);
+	              cnty.CheckCountry();
+	              
+	              
+	              
+ 
+    }
 }

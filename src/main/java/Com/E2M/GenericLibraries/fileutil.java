@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.Random;
@@ -17,6 +18,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import com.gargoylesoftware.htmlunit.WebClient;
 
  
       public class fileutil extends Baseclass_libraries{		
@@ -81,15 +84,29 @@ import org.testng.asserts.SoftAssert;
 				  setwb.write(pos);
  			 return data;
 		 }
-
-		    public boolean getResponseCode(String urlString) {
-		        boolean isValid = false;
+		 public static int getResponseCode1(String urlString) throws Throwable {
+		        URL url = new URL(urlString);
+		    HttpURLConnection huc = (HttpURLConnection)url.openConnection();
+		    huc.setRequestMethod("GET");
+		    huc.connect();
+		    int code=huc.getResponseCode();
+		    System.out.println("URL ResponseCode : " + code);
+		    return huc.getResponseCode();
+		 }
+		 public static int getStatusCode(long appUserId) throws IOException {
+			    WebClient webClient = new WebClient();
+			    int code = webClient.getPage("http://your.url/123/").getWebResponse().getStatusCode();
+			    webClient.close();
+			    return code;
+	     }
+ 		 public boolean getResponseCode(String urlString) {
+		    	boolean isValid = false;
 		        try {
 		            URL u = new URL(urlString);
 		            HttpURLConnection h = (HttpURLConnection) u.openConnection();
 		            h.setRequestMethod("HEAD");
 		            h.connect();
-		            int code=h.getResponseCode();
+ 		            int code=h.getResponseCode();
 		            System.out.println(code);
 		            if (code != 400) {
 		                isValid = true;
@@ -99,6 +116,22 @@ import org.testng.asserts.SoftAssert;
 
 		        }
 		    return isValid;
+//		        boolean isValid = false;
+//		        try {
+//		            URL u = new URL(urlString);
+//		            HttpURLConnection h = (HttpURLConnection) u.openConnection();
+//		            h.setRequestMethod("HEAD");
+//		            h.connect();
+// 		            int code=h.getResponseCode();
+//		            System.out.println(code);
+//		            if (code != 400) {
+//		                isValid = true;
+//		                Assert.assertEquals(code, 200);
+//		            }
+// 		        } catch (Exception e) {
+//
+//		        }
+//		    return isValid;
 		    }
 		 public String isLinkBroken(URL url) throws Exception {
  			 

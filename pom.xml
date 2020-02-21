@@ -4,8 +4,8 @@
   <artifactId>Hydride_Framework_Ws</artifactId>
   <version>0.0.1-SNAPSHOT</version>
    <dependencies>  
-   
- <dependency>
+ 
+<dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
     <version>2.53.1</version>

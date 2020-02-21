@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import Com.E2M.GenericLibraries.Baseclass_libraries;
 
@@ -40,19 +41,24 @@ public class UsersPage extends Baseclass_libraries {
 	private WebElement searchuser;
 	
 	@FindBy(xpath="//input[@value='Save']")
- 	private WebElement save_user_BulkUpload;	
+ 	private WebElement save_user_BulkUpload;
+	
+	@FindBy(xpath="//input[@value='Upload']")
+ 	private WebElement Saveallbulkupload;
 
-	@FindBy(xpath="//div[contains(text(),'Uploaded Successfully.')]")
+	@FindBy(xpath="//*[contains(@id,'SuccessMessage')]")
  	private WebElement sucess_msg;
+	
+//	@FindBy(xpath="//li[contains(@id,'SuccessMessage')]")
+// 	private WebElement sucess_msg1;
 	
 	@FindBy(xpath="//input[contains(@id,'btnBack')]")
 	private WebElement BackToUser;
 	
 	@FindBy(xpath="//img[contains(@id,'imgUserImage')]")
 	private WebElement VarifyImg;
-
-
 	
+  
 	//METHODS OR FUNCTIONS
 	 
 	  
@@ -93,16 +99,40 @@ public class UsersPage extends Baseclass_libraries {
     	save_user_BulkUpload.click();
     	Thread.sleep(3000);
 	} 
+    public void ClickOnAllBullupload() throws Throwable   {
+        Saveallbulkupload.click();
+    	Thread.sleep(3000);
+	} 
     public void verifymsg() throws Throwable   { 
-       String actualmsg=sucess_msg.getText();
-       System.out.println("Bulk " + actualmsg + "In CMS");
+      try {
+       String actualmsg1=sucess_msg.getText();
+       System.out.println("Bulk " + actualmsg1 +" Users"+ "In CMS");
        Thread.sleep(2000);
-       String Expectedmsg="Uploaded Successfully.";        
-       Assert.assertEquals(actualmsg, Expectedmsg);          
+       String Expectedmsg1="Uploaded Successfully.";  
+       SoftAssert asrt1=new SoftAssert();
+       asrt1.assertEquals(actualmsg1, Expectedmsg1);
+      }catch (Exception e) {
+    	  System.out.println(e.getMessage());  
  	}
+  	}
+    public void verifymsgusefulinfo() throws Throwable   { 
+    	try {
+        String actualmsg=sucess_msg.getText();
+        System.out.println("Bulk " + actualmsg + "==> UsefulInfo"+ " In CMS");
+        Thread.sleep(2000);
+        String Expectedmsg="Uploaded Successfully."; 
+         
+        SoftAssert asrt=new SoftAssert();
+        asrt.assertEquals(actualmsg, Expectedmsg);
+        } catch (AssertionError e) {
+         	System.out.println(e.getMessage());
+ 		}
+   	}
     public void NaviagteBack()   {
 		WebDriverWait wait=new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Uploaded Successfully.')]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@id,'SuccessMessage')]")));
+		String mmg=driver.findElement(By.xpath("//li[contains(@id,'SuccessMessage')]")).getText();
+		System.out.println(mmg);
 		BackToUser.click();
 	}
     public void VarifyImage()   {

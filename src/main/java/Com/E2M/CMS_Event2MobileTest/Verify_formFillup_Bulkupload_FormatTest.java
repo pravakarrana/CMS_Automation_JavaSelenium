@@ -13,7 +13,7 @@ import Com.E2M.ObjectRepository.VerifyEncryptedFormatpage;
 @Listeners(Com.E2M.GenericLibraries.ListenerClass.class)
 public class Verify_formFillup_Bulkupload_FormatTest extends Baseclass_libraries {
 	
-	 //@Test
+	 @Test
      public void CMS_E2MTest_VerifyFilledBulkupload_Format_TC09 () throws Throwable {  	 
 		 
          String email1=flib.getexcelData("Read", 9, 3);
@@ -44,18 +44,18 @@ public class Verify_formFillup_Bulkupload_FormatTest extends Baseclass_libraries
                    
          UsersPage chkusers=PageFactory.initElements(driver, UsersPage.class);		          
      		       chkusers.NavigateToCheckOnUser(email1);
-     		       
-         UsersPage varify=PageFactory.initElements(driver, UsersPage.class);
-	               varify.varifyuser();
-	               
-	     UsersPage particularuser=PageFactory.initElements(driver, UsersPage.class);
-	               particularuser.ClickOnUser();          
-         
-	     UsersPage vefifyfstnameBLK=PageFactory.initElements(driver, UsersPage.class);
-		           vefifyfstnameBLK.VerifyBLKfirstname();
-		           vefifyfstnameBLK.verifyBLKlastname();
-		           vefifyfstnameBLK.VerifyBLKPosition();
-		           vefifyfstnameBLK.VerifyBLKOrganisation();
+//     		       
+//         UsersPage varify=PageFactory.initElements(driver, UsersPage.class);
+//	               varify.varifyuser();
+//	               
+//	     UsersPage particularuser=PageFactory.initElements(driver, UsersPage.class);
+//	               particularuser.ClickOnUser();          
+//         
+//	     UsersPage vefifyfstnameBLK=PageFactory.initElements(driver, UsersPage.class);
+//		           vefifyfstnameBLK.VerifyBLKfirstname();
+//		           vefifyfstnameBLK.verifyBLKlastname();
+//		           vefifyfstnameBLK.VerifyBLKPosition();
+//		           vefifyfstnameBLK.VerifyBLKOrganisation();
  
 
 }

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -35,9 +36,10 @@ public class Baseclass_libraries   {
 		String browsername=pobj.getProperty("BROWSER");
 		if(browsername.equals("chrome")){
 			System.setProperty("webdriver.chrome.driver", "./Resourse/chromedriver.exe");
-			driver=new ChromeDriver();
-		}
+ 			driver=new ChromeDriver();
+		} 
 		else if(browsername.equals("firefox")){
+			System.setProperty("webdriver.chrome.driver", "./Resourse/geckodriver.exe");
 			driver=new FirefoxDriver();
  		}
 		else if(browsername.equals("IE")){
@@ -48,6 +50,8 @@ public class Baseclass_libraries   {
 			driver=new HtmlUnitDriver();
 		}
 		driver.manage().window().maximize();
+		driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
+		driver.manage().timeouts().setScriptTimeout(3L, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 	 @BeforeMethod 
@@ -55,14 +59,19 @@ public class Baseclass_libraries   {
 		System.out.println("Login To Event2Mobile");
 		 
     	Properties pobj=flib.getpropertiesfileobject();
-    	String CMS_URL=pobj.getProperty("URL");
-    	String PRD_actualurl=flib.getexcelData("Varification", 4, 1);
+    	String CMS_URL=pobj.getProperty("TRULIANTURL");
+    	String PRD_MCKurl=flib.getexcelData("Varification", 1, 1);
+    	String PRD_ARROWurl=flib.getexcelData("Varification", 2, 1);
+    	String PRD_TRULIANTurl=flib.getexcelData("Varification", 4, 1);
  
-     	if(CMS_URL.equals(PRD_actualurl)) {
-    		driver.get(pobj.getProperty("URL"));
+     	if(CMS_URL.equals(PRD_MCKurl)) {
+    		driver.get(pobj.getProperty("MCKURL"));
     	}
-     	else if(CMS_URL.equals("URL")) {
-    		driver.get(pobj.getProperty("URL"));
+     	else if(CMS_URL.equals(PRD_ARROWurl)) {
+    		driver.get(pobj.getProperty("ARROWURL"));
+    	}
+     	else if(CMS_URL.equals(PRD_TRULIANTurl)) {
+    		driver.get(pobj.getProperty("TRULIANTURL"));
     	}
  		 LoginPage log=PageFactory.initElements(driver, LoginPage.class);
 		           log.EnterUsername(pobj.getProperty("USERNAME").trim());

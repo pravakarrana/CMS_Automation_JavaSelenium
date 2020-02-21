@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import com.gargoylesoftware.htmlunit.WebClient;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
@@ -36,6 +37,9 @@ public class Event_SetUp_Page extends Baseclass_libraries{
 	@FindBy(xpath="//ul[@class='menu-3rd-level clearfix']//li//a[contains(@href,'')]")
 	private List<WebElement> AboutEvent_Pages;
 	
+	@FindBy(xpath=".//a[contains(@href,'')]")
+	private List<WebElement> checklink;
+	 
 	@FindBy(xpath="//input[contains(@value,'Save')]")
 	private List<WebElement> a;
 	
@@ -72,38 +76,144 @@ public class Event_SetUp_Page extends Baseclass_libraries{
 		System.out.println(sssa);
 		
 	}
+	public void Printallsubmoduleof_aboutevent2()   {
+//		System.out.println("size:" + checklink.size());
+//		for(int i = 0; i < checklink.size(); i++){
+//			String ss=checklink.get(i).getAttribute("href");
+//             System.out.println(ss);
+//  		}
+		List<WebElement> linkElements = driver.findElements(By.xpath(".//a[contains(@href,'.aspx')]"));
+		 for(int i=0;i<=linkElements.size()-1;i++) {
+			 String aa=linkElements.get(i).getAttribute("href");
+			 System.out.println(aa);
+		 }
+	}
+	//.//a[contains(@href,'.aspx')] 
+	public static int statusCode;
+	public void Printallsubmoduleof_aboutevent1() throws Throwable   {
+		
+//		WebElement img = driver.findElement(By.id("warp"));
+//        String imgpath = img.getCssValue("background-image"); 
+        String expected="error-cms.png";
+//        String done = " ";
+//          String[] hope = imgpath.split("https://truliantcms.e2m.live/Images/");
+//           for ( int j = 0; j < hope.length; j++) {
+//             done = done + hope[j];
+//           }
+//             String actual_error=done.substring(6,19);
+             //System.out.println(actual_error);
+//             
+//              if(actual_error.contains(expected)) {
+//            	 boolean errorpage = true;
+//            	//System.out.println(errorpage);
+//             }else {
+//              }
+             //boolean errorpage=actual_error.contains(expected);
+            // System.out.println("Error page found : " + errorpage);
+ 
+		
+		List<WebElement> linkElements = driver.findElements(By.xpath(".//a[contains(@href,'.aspx')]"));
+   	    String[] linkTexts = new String[linkElements.size()];
+   	    	
+  	    
+ 	    int i = 0;	
+		for (WebElement e : linkElements) {							
+			linkTexts[i] = e.getAttribute("href");							
+			i++;	
+			//System.out.println(e);
+        }
+		for (String t : linkTexts) {
+			//System.out.println(t);
+			driver.findElement(By.linkText(t)).click();	
+			WebElement img = driver.findElement(By.id("warp"));
+	        String imgpath = img.getCssValue("background-image"); 
+ 	        String done = " ";
+	          String[] hope = imgpath.split("https://truliantcms.e2m.live/Images/");
+	           for ( int j = 0; j < hope.length; j++) {
+	             done = done + hope[j];
+	           }
+	             String actual_error=done.substring(6,19);
+			if (expected.equals(actual_error)) {							
+                System.out.println("\"" + t + "\"" + " is under construction.");			
+            } else {			
+                System.out.println("\"" + t + "\"" + " is working.");			
+            }	
+			driver.navigate().back();			
+       }		
+			driver.quit();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		System.out.println("size:" + checklink.size());
+//		for(int i = 0; i < checklink.size(); i++){
+//			String ss=checklink.get(i).getAttribute("href");
+//             System.out.println(ss);
+//  		}
+//		
+//		WebClient client1=new WebClient();
+//        int codes=client1.getPage("https://truliantcms.e2m.live/event-info.aspx").getWebResponse().getStatusCode();
+//        System.out.println("INFO :" + codes);
+//        client1.close();
+      }
+		
+//     for(int i = 0; i < checklink.size(); i++){
+//        if(!(checklink.get(i).getAttribute("href") == null) && !(checklink.get(i).getAttribute("href").equals(""))){
+//            if(checklink.get(i).getAttribute("href").contains("http")){
+//                statusCode= flib.getResponseCode1(checklink.get(i).getAttribute("href").trim());
+//                if(statusCode == 403){
+//                    System.out.println("HTTP 403 Forbidden # " + i + " " + checklink.get(i).getAttribute("href"));
+//                }else if(statusCode == 200){
+//                    System.out.println("HTTP 200 Forbidden # " + i + " " + checklink.get(i).getAttribute("href"));
+//                }else if(statusCode == 404){
+//                    System.out.println("HTTP 404 Forbidden # " + i + " " + checklink.get(i).getAttribute("href"));
+//                }
+//            }else if(checklink.get(i).getAttribute("href").contains("https")){
+//                statusCode= flib.getResponseCode1(checklink.get(i).getAttribute("href").trim());
+//                if(statusCode == 403){
+//                    System.out.println("HTTP 403 Forbidden # " + i + " " + checklink.get(i).getAttribute("href"));
+//                }else if(statusCode == 404){
+//                    System.out.println("HTTP 404 Forbidden # " + i + " " + checklink.get(i).getAttribute("href"));
+//                }else if(statusCode == 200){
+//                    System.out.println("HTTP 200 Forbidden # " + i + " " + checklink.get(i).getAttribute("href"));
+//                }
+//            }
+//        }   
+//    }   
+//}
+
 	
 	public void Printallsubmoduleof_aboutevent()   {
 		 
-        System.out.println("size:" + AboutEvent_Pages.size());
-        
+        //System.out.println("size:" + AboutEvent_Pages.size());
+		System.out.println("size:" + checklink.size());
+     
         boolean isValid = false;
-        for (int i = 0; i < AboutEvent_Pages.size(); i++) {
-        	
-             isValid = flib.getResponseCode(AboutEvent_Pages.get(i).getAttribute("href"));
+        for (int i = 0; i < checklink.size(); i++) {
+            try {
+             isValid = flib.getResponseCode(checklink.get(i).getAttribute("href"));
              if (isValid) {
-                System.out.println("ValidLinks:" + AboutEvent_Pages.get(i).getAttribute("href"));
+                System.out.println("ValidLinks:" + checklink.get(i).getAttribute("href"));
            } else {
-                System.out.println("InvalidLinks:" + AboutEvent_Pages.get(i).getAttribute("href"));
+                System.out.println("InvalidLinks:" + checklink.get(i).getAttribute("href"));
              }
-        }
-     }
-//     public void ss()   {
-//	 	
-//        System.out.println("size:" + a.size());
-//        boolean isValid = false;
-//        for (int i = 0; i < a.size(); i++) {
-//        	
-//             isValid = flib.getResponseCode(a.get(i).getAttribute("value"));
-//             if (isValid) {
-//                System.out.println("ValidLinks:" + a.get(i).getAttribute("value"));
-//             } else {
-//                System.out.println("InvalidLinks:" + a.get(i).getAttribute("value"));
-//                System.out.println();
-//             }
-//        }
-//     }
- 	
+        
+            }catch (Exception e) {
+            	isValid=flib.getResponseCode(checklink.get(i).getText());
+            	System.out.println(isValid);
+			}
+ 	  }
+   }
+
       public void click()   {
 	 	
     	   LIVE.click();

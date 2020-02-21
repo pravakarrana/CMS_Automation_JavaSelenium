@@ -25,8 +25,7 @@ public class Errorpage extends Baseclass_libraries{
        boolean flag=false;
 
          try {
-	               for(int i=0;i<ClickEvent.size();i++)
-               {
+	          for(int i=0;i<ClickEvent.size();i++) {
 		             String alleventaname=ClickEvent.get(i).getText();
 		             System.out.println(alleventaname);
 		             

@@ -16,19 +16,19 @@ public class PageValidation_Event_SetUpTest extends Baseclass_libraries {
      public void CMS_E2MTest_AboutEvent() throws Throwable  {
 	 
  		 
-		 Event_SetUp_Page ss= PageFactory.initElements(driver, Event_SetUp_Page.class);
-		 ss.clickevent();
+//		 Event_SetUp_Page ss= PageFactory.initElements(driver, Event_SetUp_Page.class);
+//		 ss.clickevent();
+//		 
 		 
 		 
-		 
-		 Event_SetUp_Page s= PageFactory.initElements(driver, Event_SetUp_Page.class);
-		 s.printallerror();
+//		 Event_SetUp_Page s= PageFactory.initElements(driver, Event_SetUp_Page.class);
+//		 s.printallerror();
 		 
 //		 Venuepage vnu=PageFactory.initElements(driver, Venuepage.class);
 //                   vnu.ClickParticularEvent(); 
 //                   
-//		 Event_SetUp_Page s=PageFactory.initElements(driver, Event_SetUp_Page.class);
-//		                  s.Printallsubmoduleof_aboutevent();
+		 Event_SetUp_Page s=PageFactory.initElements(driver, Event_SetUp_Page.class);
+		                  s.Printallsubmoduleof_aboutevent1();
 //		 
 //		 Event_SetUp_Page k=PageFactory.initElements(driver, Event_SetUp_Page.class);
 //		                  k.ss();

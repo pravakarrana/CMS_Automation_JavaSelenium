@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.poi.hssf.util.HSSFColor.AQUA;
 import org.eclipse.jetty.util.log.Log;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -11,9 +12,11 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import Com.E2M.GenericLibraries.Baseclass_libraries;
 
@@ -53,27 +56,46 @@ import Com.E2M.GenericLibraries.Baseclass_libraries;
 	          @FindBy(xpath="//input[@value='Save']")
 	          private WebElement EventInfopageValidation;
 	 
+	          @FindBy(xpath="//ul[@class='menu-3rd-level clearfix']//li//a[text()='Useful Info ']")
+	          private WebElement clickonusefulinfo;
+	          
+	          @FindBy(xpath="//input[@value='Import']")
+	          private WebElement ImportusefulInfo;
+	          
+	      	  @FindBy(xpath="//div[@class='menu-toggle-link clearfix']//a[@class='toggle-menu']")
+	    	  private WebElement clickonmenu;
+	      	  
+	      	  @FindBy(xpath=".//a[contains(@class,'menu-item has-submneu')]")
+	    	  private List<WebElement> clickonAgenda;
+	    	
+	      	  @FindBy(xpath="//div[@class='sub-menu event-menu']//ul[@class='sub-menu-ul']//li[@id='Upload']")
+	    	  private WebElement clickonUpload;
+	      	  
+	      	  @FindBy(xpath="//a[contains(@id,'AllEvents')]")
+	    	  private WebElement clickonAllEventpage;
+	      	  
+	      	  @FindBy(xpath="//div[contains(@id,'ContentPlaceHolder')]//div//table//tbody//tr//td//a[contains(text(),'')]")
+	    	  private List<WebElement> Managevenuepage;
+	      	 
 	
-	
-	         //Methods or Functions
-	         public void ClickParticularEvent() throws Throwable   {
+	       //Methods or Functions
+	       public void ClickParticularEvent() throws Throwable   {
 		        String Event=flib.getexcelData("Event", 1, 9).trim();
 		               System.out.println(Event.trim());
 		               
  		        int Totalevent=ClickEvent.size();
-		        System.out.println(Totalevent);		
+		        System.out.println(Totalevent + " Events");		
 		        boolean flag=false;
 		
 	              try {
   		               for(int i=0;i<ClickEvent.size();i++)
  		               {
   			             String alleventaname=ClickEvent.get(i).getText();
-  			                    System.out.println(alleventaname);
+  			                    //System.out.println(alleventaname);
   			                    
     		                 if(alleventaname.contains(Event)) {
     				         String Expected=ClickEvent.get(i).getText();
-    				         System.out.println(Expected);
-    				         ClickEvent.get(i).click();
+     				         ClickEvent.get(i).click();
     				         flag=true;
     			             break;  			  
      			           }
@@ -92,59 +114,109 @@ import Com.E2M.GenericLibraries.Baseclass_libraries;
 		              System.out.println("Particular event is not found.");
 		              System.out.println("Please Check the event");
 		              throw(e);
-	             }
-	              
-//	               String urlpage=driver.getCurrentUrl();
-//                   System.out.println(urlpage);
-//                   
-//                   String pagetitle=driver.getTitle();
-//                   System.out.println(pagetitle); 
-                   
-                    
-                   
-             }
-             public void navigateAddVenue() {
+	            }
+           }
+           public void navigateAddVenue() {
 		         ClickAddVenue.click();
-		         
-	         }
-             public void AddVenueName(String venue) {
+ 	       }
+           public void navigateUsefulInfo() {
+            	 clickonusefulinfo.click();
+ 	       }
+           public void navigateUsefulInfoImport() {
+            	 ImportusefulInfo.click();
+ 	       }
+           public void navigateTomenu() {
+            	 clickonmenu.click();
+ 	       }
+           public void ClickonAgenda() {
+             	 for(int i=0;i<=clickonAgenda.size()-1;i++) {
+            		 String text=clickonAgenda.get(i).getText();
+             		 if(text.equals("AGENDA SETUP")) {
+            			 clickonAgenda.get(i).click(); 
+            		 }
+            	 }
+  	       }
+           public void navigateToAllEventPage() {
+            	 clickonAllEventpage.click();
+ 	       }
+           public void ClickonUpload() {
+            	 clickonUpload.click();
+ 	       }
+           public void AddVenueName(String venue) throws Throwable {
             	 VanueName.sendKeys(venue);
-	         }
-             public void AddAddress()     {
+            	 Thread.sleep(1000);
+	       }
+           public void AddAddress() throws InterruptedException  {
             	 VanueAddress.sendKeys("karunamayee");
-            	 
-             	 List<WebElement> elements = driver.findElements(By.className("pac-item"));
-                     int countname=elements.size();
-                     System.out.println(countname);
-             
-                 for(int i=0;i<=elements.size()-1;i++) {
-                 	 String location=elements.get(0).getText();
-                 	 System.out.println(location);
-                  	 elements.get(0).click();
-                  	 break;
-                 } 
-             }
-             public void CheckLatitude() {
-            	 Latitude.click();
+              	 List<WebElement> elements = driver.findElements(By.className("pac-item"));
+                 int countname=elements.size();
+                 System.out.println(countname + " Address are found");
+               for(int i=0;i<=elements.size()-1;i++) {
+                 String location=elements.get(0).getText();
+                 System.out.println(location);
+                 elements.get(0).click();
+                 break;
+               } 
+               Thread.sleep(3000);
+           }
+           public void ClickonEditManagevenuepage() {
+               try {
+            	 Alert alt=driver.switchTo().alert();
+            	       alt.accept();
+            	 }catch (Exception e) {
+ 			   }
+               try {
+            	 for(int i=0;i<=Managevenuepage.size()-1;i++) {
+            	      Managevenuepage.get(0).click();
+               }
+                }catch (Exception e) {
+ 				
+                }
+     	   }
+           public void CheckLatitude() {
+                 try {
+            	   String lat=Latitude.getAttribute("value");
+            	   System.out.println("Latitude : " +lat);
+                   } catch (Exception e) {
+            	   e.printStackTrace(); 
+ 			    }
+ 	       }
+           public void CheckLongitude() {
+            	 try {
+              	   String lan=Longitude.getAttribute("value");
+              	   System.out.println("Longitude : " +lan);
+                   } catch (Exception e) {
+              	   e.printStackTrace(); 
+   			    }
+  	       }
+           public void CheckZip_Post_Code() {
+            	 try {
+                    String pcode=Zip_Post_Code.getAttribute("value");
+                	System.out.println("Postal Code : " +pcode);
+                    } catch (Exception e) {
+                	e.printStackTrace(); 
+     			} 
+ 	       }
+           public void CheckCity() {
+            	 try {
+                    String city=City.getAttribute("value");
+                 	System.out.println("City : " +city);
+                    } catch (Exception e) {
+                 	e.printStackTrace(); 
+      		    } 
+ 	       }
+           public void CheckCountry() {
+            	 try {
+                    String country=Country.getAttribute("value");
+                  	System.out.println("Country : " +country);
+                    } catch (Exception e) {
+                  	e.printStackTrace(); 
+       			} 
+ 	       }
+           public void clickOnsave() {
+              	 save.click();
 	         }
-             public void CheckLongitude() {
-            	 Longitude.click();
-	         }
-             public void CheckZip_Post_Code() {
-            	 Zip_Post_Code.click();
-	         }
-             public void CheckCity() {
-            	 City.click();
-	         }
-             public void CheckCountry() {
-            	 Country.click();
-	         }
-             public void clickOnsave() {
-            	 save.click();
-	         }
-	 
-  
- 	}
+   	}
 	
  
 	

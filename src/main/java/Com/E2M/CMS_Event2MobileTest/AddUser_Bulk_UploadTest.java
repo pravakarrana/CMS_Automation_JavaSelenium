@@ -36,7 +36,7 @@ import Com.E2M.ObjectRepository.UsersPage;
                    
 	     //Verify the successfully message
          
-          UsersPage msg=PageFactory.initElements(driver, UsersPage.class);
+         UsersPage msg=PageFactory.initElements(driver, UsersPage.class);
                     msg.verifymsg();
             
                    

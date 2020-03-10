@@ -3,7 +3,52 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="none">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="Com.E2M.CMS_Event2MobileTest.CreateEvent_With_Feature"/>
+      <class name="Com.E2M.CMS_Event2MobileTest.Add_Disclaimer"/>
+      <class name="Com.E2M.CMS_Event2MobileTest.UsefulInfo"/>
+      <class name="Com.E2M.CMS_Event2MobileTest.SocialLink"/>
+      <class name="Com.E2M.CMS_Event2MobileTest.Apptutorial"/>
+      <class name="Com.E2M.CMS_Event2MobileTest.Add_VenueTest"/>
     </classes>
   </test> <!-- Test -->
+  <test name="Test(failed)" parallel="none">
+    <classes>
+      <class name="Com.E2M.CMS_Event2MobileTest.UsefulInfo">
+        <methods>
+          <include name="configBm"/>
+          <include name="configAm"/>
+          <include name="configBc"/>
+          <include name="configAc"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.UsefulInfo -->
+      <class name="Com.E2M.CMS_Event2MobileTest.Apptutorial">
+        <methods>
+          <include name="configBm"/>
+          <include name="configAm"/>
+          <include name="CMS_E2MTest_Apptutorial_1TC014"/>
+          <include name="configBc"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.Apptutorial -->
+      <class name="Com.E2M.CMS_Event2MobileTest.Add_VenueTest">
+        <methods>
+          <include name="CMS_E2MTest_AddVenue_TC014"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.Add_VenueTest -->
+      <class name="Com.E2M.CMS_Event2MobileTest.Add_Disclaimer">
+        <methods>
+          <include name="configBm"/>
+          <include name="configAm"/>
+          <include name="configBc"/>
+          <include name="configAc"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.Add_Disclaimer -->
+      <class name="Com.E2M.CMS_Event2MobileTest.SocialLink">
+        <methods>
+          <include name="configBm"/>
+          <include name="configAm"/>
+          <include name="configBc"/>
+          <include name="configAc"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.SocialLink -->
+    </classes>
+  </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

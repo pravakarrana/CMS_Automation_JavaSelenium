@@ -28,8 +28,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
-
+ 
 public class Findjavascripterror {
 
 	//public static void main(String[] args) {
@@ -63,7 +62,7 @@ public class Findjavascripterror {
       		System.out.println(new Date());
  	    	}
 	    }
-        @Test
+        //@Test
 	    public void testmethod() throws ParseException, Throwable {
 	    	driver.get("https://mckcms.e2m.live/");
  	    	

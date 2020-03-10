@@ -1,6 +1,12 @@
 package Com.E2M.GenericLibraries;
 
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,8 +25,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-
+ 
  
       public class fileutil extends Baseclass_libraries{		
 		 String filepath="./Data/commondata.properties";
@@ -93,12 +98,12 @@ import com.gargoylesoftware.htmlunit.WebClient;
 		    System.out.println("URL ResponseCode : " + code);
 		    return huc.getResponseCode();
 		 }
-		 public static int getStatusCode(long appUserId) throws IOException {
-			    WebClient webClient = new WebClient();
-			    int code = webClient.getPage("http://your.url/123/").getWebResponse().getStatusCode();
-			    webClient.close();
-			    return code;
-	     }
+//		 public static int getStatusCode(long appUserId) throws IOException {
+//			    WebClient webClient = new WebClient();
+//			    int code = webClient.getPage("http://your.url/123/").getWebResponse().getStatusCode();
+//			    webClient.close();
+//			    return code;
+//	     }
  		 public boolean getResponseCode(String urlString) {
 		    	boolean isValid = false;
 		        try {
@@ -173,6 +178,35 @@ import com.gargoylesoftware.htmlunit.WebClient;
 		    	       assrt.assertFalse(actual_error.contains(expected));
 		    	       assrt.assertAll();
  		    return errorpage;
+		    }
+		    public void uploadFileWithRobot (String imagePath) {
+		    
+		        StringSelection stringSelection = new StringSelection(imagePath);
+		        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		        clipboard.setContents(stringSelection, null);
+		 
+		        Robot robot = null;
+		 
+		        try {
+		            robot = new Robot();
+		            robot.delay(1000);
+		        } catch (AWTException e) {
+		            e.printStackTrace();
+		        }
+		 
+		        robot.delay(1000);
+		        robot.keyPress(KeyEvent.VK_ENTER);
+		        robot.delay(1000);
+		        robot.keyRelease(KeyEvent.VK_ENTER);
+		        robot.delay(1200);
+		        robot.keyPress(KeyEvent.VK_CONTROL);
+		        robot.delay(2000);
+		        robot.keyPress(KeyEvent.VK_V);
+ 		        robot.keyRelease(KeyEvent.VK_V);
+		        robot.keyRelease(KeyEvent.VK_CONTROL);
+		        robot.keyPress(KeyEvent.VK_ENTER);
+		        robot.delay(150);
+		        robot.keyRelease(KeyEvent.VK_ENTER);
 		    }
 		    
 		    

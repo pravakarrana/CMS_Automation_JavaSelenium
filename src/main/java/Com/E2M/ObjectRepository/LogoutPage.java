@@ -4,16 +4,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LogoutPage {
-	//WebElement locators
-	@FindBy(xpath="//a[@id='top1_Logout']")
+ 
+	@FindBy(xpath="//a[contains(@title,'Logout')]")
 	private WebElement logout;
 	
+	@FindBy(xpath="//a[contains(@id,'Logout')]")
+	private WebElement logoutall;
+	
  
-	
-	
-	//Ulilisation
+ 	 
 	public void clickOnlogout()   {
 		logout.click();
 	}
-
+	public void clickOnlogoutall()   {
+		logoutall.click();
+	}
 }

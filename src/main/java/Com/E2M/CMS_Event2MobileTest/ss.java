@@ -8,7 +8,7 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
-@Test
+//@Test
 public class ss {
 	public static void main(String[] args) throws IOException
 	{

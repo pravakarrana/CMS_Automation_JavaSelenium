@@ -13,7 +13,7 @@ import Com.E2M.ObjectRepository.Venuepage;
 	
 	 @Test
      public void CMS_E2MTest_AddVenue_TC014() throws Throwable  {
-
+         String venue=flib.getexcelData("EventSetup", 1, 0);
 		 
 		Venuepage vnu=PageFactory.initElements(driver, Venuepage.class);
  		          vnu.ClickParticularEvent();
@@ -22,7 +22,7 @@ import Com.E2M.ObjectRepository.Venuepage;
  		          addvnue.navigateAddVenue();
  		          
  		Venuepage vnuname=PageFactory.initElements(driver, Venuepage.class);
-		          vnuname.AddVenueName("Karunamayee");
+		          vnuname.AddVenueName(venue);
 		          
 	    Venuepage vnuaddr=PageFactory.initElements(driver, Venuepage.class);
 	              vnuaddr.AddAddress();

@@ -12,7 +12,7 @@ import Com.E2M.ObjectRepository.Venuepage;
 @Listeners(Com.E2M.GenericLibraries.ListenerClass.class)
 public class PageValidation_Event_SetUpTest extends Baseclass_libraries {
 	
-	 @Test
+	 //@Test
      public void CMS_E2MTest_AboutEvent() throws Throwable  {
 	 
  		 

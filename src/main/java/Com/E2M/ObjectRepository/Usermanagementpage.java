@@ -2,16 +2,23 @@ package Com.E2M.ObjectRepository;
 
     
  
+import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
- 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 import Com.E2M.GenericLibraries.Baseclass_libraries;
 
@@ -38,6 +45,41 @@ public class Usermanagementpage extends Baseclass_libraries{
 	@FindBy(xpath="//input[contains(@name,'fileupload')]")
 	private WebElement upl;
 	
+	@FindBy(xpath="//input[contains(@id,'fuNewLogo')]")
+    private WebElement Uploadimage;
+	
+    @FindBy(xpath="//a[@id='anchorFileUpload']")
+    private WebElement allimageupload;
+    
+    @FindBy(xpath="//img[contains(@id,'iphonelandscape')]")
+    private WebElement alliPhoneimageuploadVerify; 
+    
+    @FindBy(xpath="//div[contains(@class,'iPhonediv')]")
+    private WebElement alliPhoneimageuploadVerify1;
+    
+    @FindBy(xpath="//span[contains(text(),'iPhone X Images')]")
+    private WebElement clickiPhoneXimageupload; 
+    
+    @FindBy(xpath="//img[contains(@id,'iphoneXlandscape')]")
+    private WebElement iphoneXimageuploadVerify; 
+    
+    @FindBy(xpath="//span[contains(text(),'All Android Images')]")
+    private WebElement clickallandroidimageupload;  
+    
+    @FindBy(xpath="//img[contains(@id,'androidlandscape')]")
+    private WebElement alliandroidimageuploadVerify;
+    
+    @FindBy(xpath="//span[contains(text(),'iPad Portrait Images')]")
+    private WebElement clickIpadportimageupload;
+    
+    @FindBy(xpath="//img[contains(@id,'ipadlandscape')]")
+    private WebElement ipadportimageuploadVerify;
+    
+    @FindBy(xpath="//span[contains(text(),'iPad Landscape Images')]")
+    private WebElement clicklandscapeportimageupload;
+    
+    @FindBy(xpath="//img[contains(@id,'ipadNext')]")
+    private WebElement ipadlandscapeimageuploadVerify;
 	 
 	
 	
@@ -246,6 +288,245 @@ public class Usermanagementpage extends Baseclass_libraries{
 	       robot.keyRelease(java.awt.event.KeyEvent.VK_ENTER);
 	       Thread.sleep(3000);
 	}	
+	public void ClickOnUploadSociallink() throws InterruptedException, Throwable    {
+		Actions actaa=new Actions(driver);
+		actaa.moveToElement(Uploadimage).click().build().perform();	 
+        Thread.sleep(2000);
+        
+		   StringSelection socialstring=new StringSelection("C:\\Users\\pravakar.rana\\Downloads\\AutomationTest\\instagram");
+	       Toolkit socialtk=Toolkit.getDefaultToolkit();
+	       Clipboard socialcb=socialtk.getSystemClipboard();
+	       socialcb.setContents(socialstring, null);
+	       
+	       Robot socialrobot=new Robot();
+	       socialrobot.keyPress(java.awt.event.KeyEvent.VK_CONTROL);
+	       socialrobot.keyPress(java.awt.event.KeyEvent.VK_V);
+	       Thread.sleep(500);
+	       
+	       socialrobot.keyRelease(java.awt.event.KeyEvent.VK_V);
+	       socialrobot.keyRelease(java.awt.event.KeyEvent.VK_CONTROL);
+	       Thread.sleep(500);
+      
+	       socialrobot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
+	       socialrobot.keyRelease(java.awt.event.KeyEvent.VK_ENTER);
+	       Thread.sleep(3000);
+        
+	}
+	public void AlliPhoneImageupload() throws InterruptedException, Throwable    {
+		Actions Allphone=new Actions(driver);
+		Allphone.moveToElement(allimageupload).click().build().perform();	 
+        Thread.sleep(2000);
+       
+		   StringSelection alliphoneimages=new StringSelection("C:\\Users\\pravakar.rana\\Downloads\\AutomationTest\\alliphoneimages");
+	       Toolkit alliphonetk=Toolkit.getDefaultToolkit();
+	       Clipboard alliphonecb=alliphonetk.getSystemClipboard();
+	       alliphonecb.setContents(alliphoneimages, null);
+	       
+ 	       Robot alliphonerobot = null;
+ 	       try {
+	        alliphonerobot=new Robot();
+	       }catch (AWTException e) {
+	    	   e.printStackTrace();
+ 		   }
+	        alliphonerobot.delay(250);
+	        alliphonerobot.keyPress(KeyEvent.VK_ENTER);
+	        alliphonerobot.keyRelease(KeyEvent.VK_ENTER);
+	        alliphonerobot.keyPress(KeyEvent.VK_CONTROL);
+	        alliphonerobot.keyPress(KeyEvent.VK_V);
+  	        alliphonerobot.keyRelease(KeyEvent.VK_V);
+	        alliphonerobot.keyRelease(KeyEvent.VK_CONTROL);
+ 	        alliphonerobot.keyPress(KeyEvent.VK_ENTER);
+	        alliphonerobot.delay(150);
+ 	        alliphonerobot.keyRelease(KeyEvent.VK_ENTER);
+         
+	}
+	public void iPhoneXImageupload() throws InterruptedException, Throwable    {
+		JavascriptExecutor jss = (JavascriptExecutor) driver; 
+        jss.executeScript("window.scrollBy(0,1000)");
+   	    Thread.sleep(1000);
+   	    
+   	    try {
+		    WebDriverWait waitforelement=new WebDriverWait(driver, 20);
+    	    waitforelement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@id,'iphonelandscape')]")));
+   	    }catch (Exception e) {
+   	    	WebDriverWait waitforelement=new WebDriverWait(driver, 20);
+   	    	waitforelement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'iPhonediv')]")));	 
+		}
+   	    try {
+    	    boolean img=alliPhoneimageuploadVerify.isDisplayed();
+    	    Assert.assertEquals(true, img);
+    	    System.out.println(img + " :All iPhone Image Showing");
+   	    }catch (Exception e) {
+   	    	boolean img=alliPhoneimageuploadVerify1.isDisplayed();
+   	    	Assert.assertEquals(true, img);
+   	    	System.out.println(img + " :All iPhone Image Showing For Test");	 
+		}
+    	clickiPhoneXimageupload.click();
+    	
+		Actions phoneX=new Actions(driver);
+		phoneX.moveToElement(allimageupload).click().build().perform();	 
+        Thread.sleep(2000);
+        
+		   StringSelection iphoneXimages=new StringSelection("C:\\Users\\pravakar.rana\\Downloads\\AutomationTest\\iphone x");
+	       Toolkit iphoneXtk=Toolkit.getDefaultToolkit();
+	       Clipboard iphoneXcb=iphoneXtk.getSystemClipboard();
+	       iphoneXcb.setContents(iphoneXimages, null);
+	       
+	       Robot iphoneXrobot=null;
+	       try {
+	        iphoneXrobot=new Robot();
+	       }catch (AWTException e) {
+	    	   e.printStackTrace();
+ 		   }
+	        iphoneXrobot.delay(250);
+	        iphoneXrobot.keyPress(KeyEvent.VK_ENTER);
+	        iphoneXrobot.keyRelease(KeyEvent.VK_ENTER);
+	        iphoneXrobot.keyPress(KeyEvent.VK_CONTROL);
+	        iphoneXrobot.keyPress(KeyEvent.VK_V);
+ 	        iphoneXrobot.keyRelease(KeyEvent.VK_V);
+	        iphoneXrobot.keyRelease(KeyEvent.VK_CONTROL);
+ 	        iphoneXrobot.keyPress(KeyEvent.VK_ENTER);
+ 	        iphoneXrobot.delay(150);
+	        iphoneXrobot.keyRelease(KeyEvent.VK_ENTER);
+ 	}
+	public void AllandroidImageupload() throws InterruptedException, Throwable    {
+		JavascriptExecutor andr = (JavascriptExecutor) driver;
+		andr.executeScript("window.scrollBy(0,1000)");
+   	    Thread.sleep(1000);
+   	   
+   	    try {
+		    WebDriverWait waitforelement=new WebDriverWait(driver, 20);
+    	    waitforelement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@id,'iphoneXlandscape')]")));
+   	    }catch (Exception e) {
+   	    	WebDriverWait waitforelement=new WebDriverWait(driver, 20);
+   	    	waitforelement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'iPhonediv')]")));	 
+		}
+   	    try {
+    	    boolean img=iphoneXimageuploadVerify.isDisplayed();
+    	    Assert.assertEquals(true, img);
+    	    System.out.println(img + " : iPhone X Image Showing");
+   	    }catch (Exception e) {
+   	    	boolean img=alliPhoneimageuploadVerify1.isDisplayed();
+   	    	Assert.assertEquals(true, img);
+   	    	System.out.println(img + " : iPhone X Image Showing for test");	
+		}
+    	clickallandroidimageupload.click();
+    	
+		Actions android=new Actions(driver);
+		android.moveToElement(allimageupload).click().build().perform();	 
+        Thread.sleep(2000);
+       
+		   StringSelection allandroid=new StringSelection("C:\\Users\\pravakar.rana\\Downloads\\AutomationTest\\android images");
+	       Toolkit androidtk=Toolkit.getDefaultToolkit();
+	       Clipboard androidcb=androidtk.getSystemClipboard();
+	       androidcb.setContents(allandroid, null);
+	       Robot androidrobot=null;
+	       try {
+	        androidrobot=new Robot();
+	       }catch (AWTException e) {
+	    	   e.printStackTrace();
+ 		   }
+	       androidrobot.delay(250);
+	       androidrobot.keyPress(KeyEvent.VK_ENTER);
+	       androidrobot.keyRelease(KeyEvent.VK_ENTER);
+	       androidrobot.keyPress(KeyEvent.VK_CONTROL);
+	       androidrobot.keyPress(KeyEvent.VK_V);
+ 	       androidrobot.keyRelease(KeyEvent.VK_V);
+	       androidrobot.keyRelease(KeyEvent.VK_CONTROL);
+ 	       androidrobot.keyPress(KeyEvent.VK_ENTER);
+	       androidrobot.delay(150);
+ 	       androidrobot.keyRelease(KeyEvent.VK_ENTER);
+         
+	}
+	public void IpadportaitImageupload() throws InterruptedException, Throwable    {
+		JavascriptExecutor ipadport = (JavascriptExecutor) driver;
+		ipadport.executeScript("window.scrollBy(0,1000)");
+   	    Thread.sleep(1000);
+   	    
+		WebDriverWait waitforelement=new WebDriverWait(driver, 20);
+    	waitforelement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@id,'androidlandscape')]")));
+		
+    	boolean img=alliandroidimageuploadVerify.isDisplayed();
+    	Assert.assertEquals(true, img);
+    	System.out.println(img + " : Android Image Showing");
+     	
+    	clickIpadportimageupload.click();
+ 		Actions ipadportm=new Actions(driver);
+		ipadportm.moveToElement(allimageupload).click().build().perform();	 
+        Thread.sleep(2000);
+      
+		   StringSelection ipadportmode=new StringSelection("C:\\Users\\pravakar.rana\\Downloads\\AutomationTest\\ipad");
+	       Toolkit ipadtk=Toolkit.getDefaultToolkit();
+	       Clipboard ipadcb=ipadtk.getSystemClipboard();
+	       ipadcb.setContents(ipadportmode, null);
+	       
+	       Robot ipadporobot = null;
+	       try {
+	        ipadporobot=new Robot();
+	       }catch (AWTException  e) {
+			e.printStackTrace();
+		   }  
+	       ipadporobot.delay(250);
+	       ipadporobot.keyPress(KeyEvent.VK_ENTER);
+	       ipadporobot.keyRelease(KeyEvent.VK_ENTER);
+	       ipadporobot.keyPress(KeyEvent.VK_CONTROL);
+	       ipadporobot.keyPress(KeyEvent.VK_V);
+ 	       ipadporobot.keyRelease(KeyEvent.VK_V);
+	       ipadporobot.keyRelease(KeyEvent.VK_CONTROL);
+  	       ipadporobot.keyPress(KeyEvent.VK_ENTER);
+  	       ipadporobot.delay(150);
+	       ipadporobot.keyRelease(KeyEvent.VK_ENTER);
+         
+	}
+	public void IpadLandscapeImageupload() throws InterruptedException, Throwable    {
+		JavascriptExecutor ipadlandscape = (JavascriptExecutor) driver;
+		ipadlandscape.executeScript("window.scrollBy(0,1000)");
+   	    Thread.sleep(1000);
+   	    
+		WebDriverWait waitforelement=new WebDriverWait(driver, 20);
+    	waitforelement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@id,'ipadlandscape')]")));
+		
+    	boolean img=ipadportimageuploadVerify.isDisplayed();
+    	Assert.assertEquals(true, img);
+    	System.out.println(img + " : iPad Portait Image Showing");
+    	clicklandscapeportimageupload.click();
+    	
+		Actions ipadlandm=new Actions(driver);
+		ipadlandm.moveToElement(allimageupload).click().build().perform();	
+		Thread.sleep(2000);
+		 
+ 		   StringSelection ipadlandmode=new StringSelection("C:\\Users\\pravakar.rana\\Downloads\\AutomationTest\\ipad landscape");
+	       Toolkit landtk=Toolkit.getDefaultToolkit();
+	       Clipboard landcb=landtk.getSystemClipboard();
+	       landcb.setContents(ipadlandmode, null);
+	       Robot ipadlandrobot=null;
+	       try {
+	        ipadlandrobot=new Robot();
+	       }catch (AWTException e) {
+	    	   e.printStackTrace();
+ 		   }
+	       ipadlandrobot.delay(250);
+	       ipadlandrobot.keyPress(KeyEvent.VK_ENTER);
+	       ipadlandrobot.keyRelease(KeyEvent.VK_ENTER);
+	       ipadlandrobot.keyPress(KeyEvent.VK_CONTROL);
+	       ipadlandrobot.keyPress(KeyEvent.VK_V);
+ 	       ipadlandrobot.keyRelease(KeyEvent.VK_V);
+	       ipadlandrobot.keyRelease(KeyEvent.VK_CONTROL);
+	       ipadlandrobot.keyPress(KeyEvent.VK_ENTER);
+	       ipadlandrobot.delay(250);
+ 	       ipadlandrobot.keyRelease(KeyEvent.VK_ENTER);
+ 		 
+	        JavascriptExecutor ipadlandscape1 = (JavascriptExecutor) driver;
+			ipadlandscape1.executeScript("window.scrollBy(0,1000)");
+	   	    Thread.sleep(1000);
+	   	    
+			WebDriverWait waitforelement1=new WebDriverWait(driver, 20);
+	    	waitforelement1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@id,'ipadNext')]")));
+			
+	    	boolean img1=ipadlandscapeimageuploadVerify.isDisplayed();
+	    	Assert.assertEquals(true, img1);
+	    	System.out.println(img + " : iPad Landscape Image Showing");
+	}
 	 
  
 	

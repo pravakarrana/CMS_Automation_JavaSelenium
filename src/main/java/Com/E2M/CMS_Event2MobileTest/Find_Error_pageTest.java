@@ -11,7 +11,7 @@ import Com.E2M.ObjectRepository.Errorpage;
 public class Find_Error_pageTest extends Baseclass_libraries{
 
 	
-	 @Test
+	 //@Test
      public void CMS_E2MTest_Errorpage() throws Throwable  {
 
 		 

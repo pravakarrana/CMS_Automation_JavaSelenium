@@ -18,13 +18,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import Com.E2M.GenericLibraries.Baseclass_libraries;
 import Com.E2M.GenericLibraries.ConsoleColors;
 import Com.E2M.GenericLibraries.JavaScriptExecutorConcept;
+import Com.E2M.GenericLibraries.WebDriverUtils;
 import bsh.Console;
 
     public class EventSetupPage extends Baseclass_libraries {
@@ -37,7 +40,40 @@ import bsh.Console;
 	
       @FindBy(xpath="//div[@class='sub-menu event-menu']//ul//li//a[contains(text(),'App Branding')]")
       private WebElement clickonappBranding;	 
-     	 
+     	
+      @FindBy(xpath="//div[@class='sub-menu event-menu']//ul//li//a[contains(text(),'App Menu')]")
+      private WebElement clickonappMenu;
+      
+      @FindBy(xpath="//div[@class='sub-menu event-menu']//ul//li//a[text()='Resources']")
+      private WebElement clickonResourse; 
+      
+      @FindBy(xpath="//div[contains(@class,'new-clpshdr')]//span")
+      private WebElement clickonAddnewResourse; 
+      
+      @FindBy(xpath="//select[contains(@name,'ddlResourceType')]")
+      private WebElement SearchResourseType;
+      
+      @FindBy(xpath=".//table[contains(@id,'gvResources')]//tbody//tr[2]//td[2]//div//input[contains(@name,'txtResourcesTitle')]")
+      private WebElement AllResourses; 
+      
+      @FindBy(xpath=".//table[contains(@id,'gvResources')]//tbody//tr[2]//td[2]//div//input[contains(@name,'txtResourcesTitle')]")
+      private boolean AllResoursescheck; 
+      
+      @FindBy(xpath="//table[contains(@id,'gvResources')]//tbody//div[text()='No Records Found.']")
+      private WebElement Norecordsfound;
+      
+      @FindBy(xpath="//select[contains(@name,'cmbSourceTpe')]")
+      private WebElement ResourseType;  
+      
+      @FindBy(xpath="//input[contains(@id,'txtLinkResourceTitle')]")
+      private WebElement ResourseTitle; 
+      
+      @FindBy(xpath="//input[contains(@id,'txtLinkResourcLink')]")
+      private WebElement ResourseLink; 
+      
+      @FindBy(xpath="//input[@id='btnResourceLinkSave']")
+      private WebElement SaveResourseLink;
+      
 	  @FindBy(xpath="//div[@id='divTopBarColor']")
       private WebElement clickonTopBar_color;
 	  
@@ -184,7 +220,7 @@ import bsh.Console;
  	  public void navigateAppBranding() {
 		  clickonappBranding.click();
       }
- 	  public void Logo_themecolor() throws Throwable {//"+Date+"
+   	  public void Logo_themecolor() throws Throwable {//"+Date+"
  		String  Top_barcolor =flib.getexcelData("EventSetup", 1, 8);
  		String  Headercolor =flib.getexcelData("EventSetup", 1, 9);
  		String  fontcolor =flib.getexcelData("EventSetup", 1, 10);
@@ -200,6 +236,9 @@ import bsh.Console;
  		 if(verifyeventlogo){
  			 System.out.println(ConsoleColors.ANSI_GREEN + "Event Logo have already present" + ConsoleColors.ANSI_RESET);
   		}else{
+  			WebDriverWait wait1=new WebDriverWait(driver, 20);
+ 	        wait1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//input[contains(@name,'flUpPhoto')]")));
+  	    	
             Actions logoact=new Actions(driver);
    		    logoact.moveToElement(eventlogo).click().build().perform();	 
             Thread.sleep(2000);
@@ -667,8 +706,11 @@ import bsh.Console;
  	    	 Thread.sleep(2000);
  	     }
  	     public void importEventbanner() throws Throwable{
- 	    	 Actions act=new Actions(driver);
- 	    	 act.moveToElement(importbanner1).click().build().perform();
+ 	    	WebDriverWait wait1=new WebDriverWait(driver, 20);
+ 	        wait1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//input[contains(@name,'Banner2') and @type='file']")));
+  	    	
+ 	        Actions act=new Actions(driver);
+ 	    	act.moveToElement(importbanner1).click().build().perform();
   	    	 String bannerimport1=flib.getexcelData("EventSetup", 5, 12);
  	    	 flib.uploadFileWithRobot(bannerimport1);
  	    	 Thread.sleep(2000);
@@ -731,6 +773,84 @@ import bsh.Console;
   	    		    System.out.println(ConsoleColors.ANSI_GREEN + "New Banner Not Added" +ConsoleColors.ANSI_RESET);
 			  }
   	     }
- 	  	 
- 	 
-}
+ 	     public void navigateAppMenu() {
+ 	    	clickonappMenu.click();
+ 	     }
+ 	     public void navigateResourse() {
+ 	    	clickonResourse.click();
+ 	     } 
+  	     public void SearchresourseType(String title,String link) throws Throwable {
+   	    	    Select sel=new Select(SearchResourseType);
+  	    	    SearchResourseType.click();
+  	    	    sel.selectByVisibleText("Link");
+  	    	    Thread.sleep(3000);
+  	    	  try{ 
+  	    		 boolean flag=true;
+  	    	     if(Norecordsfound.getText().contains("No Records Found.")){
+      	            System.out.println(ConsoleColors.ANSI_RED + Norecordsfound.getText() + "==>.Please Add Resourses" +ConsoleColors.ANSI_RESET +flag);
+      	            clickonAddnewResourse.click();
+      	            Select sele=new Select(ResourseType);
+  	  	            ResourseType.click();
+  	  	            sele.selectByVisibleText("Link");
+  	  	            
+  	  	         Actions act=new Actions(driver);
+	  	         act.moveToElement(ResourseTitle).click().build().perform();	   
+ 	    	     ResourseTitle.sendKeys(title);
+ 	    	     ResourseLink.sendKeys(link);
+ 	    	     
+ 	    	     SaveResourseLink.click();
+ 	    	     Thread.sleep(2000);
+ 	    	     
+   	   	         Alert alt=driver.switchTo().alert();
+   	   	         String s=alt.getText();
+   	   	         System.out.println(s);
+   	   	        
+   	   	         Assert.assertEquals(alt.getText(), "Resource saved successfully.");
+   	    	     alt.accept();
+  	    	     }
+  	    	  }catch(Exception e){
+   	    	  }finally{
+      	    	 System.out.println(ConsoleColors.ANSI_GREEN+ AllResourses.getAttribute("value") + " ==>> Resourses are available "+ConsoleColors.ANSI_RESET);   	    	     
+   	    	   }
+   	    	}
+ 
+//   	    	  try{ 
+//  	    		 boolean flag=true;
+//  	    	     if(AllResourses.getAttribute("value").contains(AllResourses.getAttribute("value"))){
+//  	    	    	System.out.println(ConsoleColors.ANSI_RED+ AllResourses.getAttribute("value") + " ==>> Resourses are available "+ConsoleColors.ANSI_RESET);   	    	     }
+//  	    	  }catch(Exception e){
+//   	    	  }
+    
+  	     public void SelectResourseType() throws Throwable {
+   	    	//String resoursetype=flib.getexcelData("EventSetup", 1, 16);
+   	    	Select sel=new Select(ResourseType);
+  	    	ResourseType.click();
+  	    	sel.selectByVisibleText("Link");
+  	    	Actions act=new Actions(driver);
+  	    	act.moveToElement(ResourseTitle);
+  	    	Thread.sleep(2000);
+  	 	 } 
+ 	     public void ResourseTitle(String title) throws Throwable {
+ 	  	        Actions act=new Actions(driver);
+	  	        act.moveToElement(ResourseTitle).click().build().perform();	   
+ 	    	    ResourseTitle.sendKeys(title);
+    	 }
+ 	     public void Resourselink(String link) throws Throwable {
+ 	    	 ResourseLink.sendKeys(link);
+    	 } 
+ 	     public void saveResourselink() throws Throwable {
+ 	    	 String resoursetitle=flib.getexcelData("EventSetup", 1, 17);
+  	    	 SaveResourseLink.click();
+    	    	 
+   	    	 Alert alt=driver.switchTo().alert();
+   	    	 String d=alt.getText();
+   	    	 System.out.println(d);
+   	    	 
+   	    	 
+   	    	 SoftAssert as=new SoftAssert();
+   	    	 as.assertEquals(alt.getText(), "Resource saved successfully.");
+ 	    	  
+       	 }
+// 	    JavaScriptExecutorConcept.flash(SaveResourseLink, driver);
+//	    	 JavaScriptExecutorConcept.changeColor("rgb(0,200,0)", SaveResourseLink, driver);
+   }

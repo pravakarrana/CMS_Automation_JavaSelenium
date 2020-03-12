@@ -147,9 +147,9 @@ import Com.E2M.GenericLibraries.JavaScriptExecutorConcept;
 	      //Methods or Functions
 	      public void ClickParticularEvent() throws Throwable   {
 		        String Event=flib.getexcelData("Event", 1, 9).trim();
-		        System.out.println(Event.trim());
+		        System.out.println(ConsoleColors.ANSI_GREEN+Event.trim()+ConsoleColors.ANSI_RESET);
   		        int Totalevent=ClickEvent.size();
-		        System.out.println(Totalevent + " Events");		
+		        System.out.println(ConsoleColors.ANSI_GREEN+Totalevent + " Events"+ConsoleColors.ANSI_RESET);		
 		        boolean flag=false;
 		         
  	            try {
@@ -160,11 +160,11 @@ import Com.E2M.GenericLibraries.JavaScriptExecutorConcept;
       				    ClickEvent.get(i).click();
     				    flag=true;
     			        break;  			  
-     			             }
+     			        }
  		               }	
     	               if(flag==true) {
   		                Assert.assertEquals(flag, true);
-  		                System.out.println(Event + " Event available");
+  		                System.out.println(ConsoleColors.ANSI_GREEN+Event + " Event available"+ConsoleColors.ANSI_RESET);
   		                Reporter.log(Event + " Event available ");
                      } else {
   		                System.out.println(Event + " Event not avalable");

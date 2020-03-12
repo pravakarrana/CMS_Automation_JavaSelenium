@@ -38,7 +38,7 @@ public class Baseclass_libraries   {
 //			ChromeOptions options = new ChromeOptions();
 //			options.setpage
 			//options.setPageLoadStrategy(PageLoadStrategy.EAGER);
- 			driver=new ChromeDriver( );
+ 			driver=new ChromeDriver();
 		} 
 		else if(browsername.equals("firefox")){
 			System.setProperty("webdriver.chrome.driver", "./Resourse/geckodriver.exe");
@@ -95,7 +95,7 @@ public class Baseclass_libraries   {
      }	
 	 @AfterMethod 
 	 public void configAm(ITestResult result){
-//		 System.out.println("Logout To Event2mobile");
+		 System.out.println("Logout To Event2mobile");
 //		 try {
 //		     LogoutPage lout=PageFactory.initElements(driver, LogoutPage.class);
 //		     lout.clickOnlogoutall();

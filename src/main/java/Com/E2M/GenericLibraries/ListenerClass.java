@@ -12,6 +12,7 @@ import javax.naming.spi.DirStateFactory.Result;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.IResultMap;
 import org.testng.ISuite;
@@ -22,6 +23,7 @@ import org.testng.ITestResult;
 import org.testng.remote.adapter.RemoteResultListener;
 import org.testng.xml.XmlSuite;
 
+import com.gargoylesoftware.htmlunit.javascript.host.media.webkitAudioContext;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -50,8 +52,7 @@ import com.relevantcodes.extentreports.model.Log;
 		extent.flush();
 		extent.close();
 	}   
-
-	private void buildTestNodes(IResultMap tests, LogStatus status) {
+ 	private void buildTestNodes(IResultMap tests, LogStatus status) {
 		ExtentTest test;
 
 		if (tests.size() > 0) {
@@ -75,55 +76,42 @@ import com.relevantcodes.extentreports.model.Log;
 			}
 		}
 	}
-
-	private Date getTime(long millis) {
+ 	private Date getTime(long millis) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(millis);
 		return calendar.getTime();
 	}
-
-	public void onTestStart(ITestResult result) {
+ 	public void onTestStart(ITestResult result) {
  		               
 		 
 	}
-
-	public void onTestSuccess(ITestResult result) {
+ 	public void onTestSuccess(ITestResult result) {
 		System.out.println("Sucessfully Pass==> " +result.getMethod().getMethodName()); 
 		
 	}
-
-	public void onTestFailure(ITestResult result) {
- 		
-		String failedTestName=result.getMethod().getMethodName();
+ 	public void onTestFailure(ITestResult result) {
+ 		String failedTestName=result.getInstanceName();
  		EventFiringWebDriver eDriver=new EventFiringWebDriver(Baseclass_libraries.driver);
-		
-		File src=eDriver.getScreenshotAs(OutputType.FILE);
+ 		
+  		File src=eDriver.getScreenshotAs(OutputType.FILE);
 		File dst=new File("./screenshot/"+ failedTestName + ".png");
 		try {
-			FileUtils.copyFile(src, dst);
+  			FileUtils.copyFile(src, dst);
 		} catch (IOException e1) {
  			e1.printStackTrace();
 		}
- 
-	}
+ 	}
 	public void onTestSkipped(ITestResult result) {
 		 
-		
-	}
-
-	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+ 	}
+ 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		 
-		
-	}
-
-	public void onStart(ITestContext context) {
+ 	}
+ 	public void onStart(ITestContext context) {
 		 
-		
-	}
-
-	public void onFinish(ITestContext context) {
+ 	}
+ 	public void onFinish(ITestContext context) {
 	 
-		
-	}
-
-}
+ 	}
+	 
+ }

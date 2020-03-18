@@ -15,7 +15,7 @@ public class BulkUploadAllEvent extends Baseclass_libraries {
 	
 	
 
-	//@Test
+	@Test
     public void CMS_E2MTest_AddVenue_TC014() throws Throwable  {
 
 		Eventmanagementpage EMP=PageFactory.initElements(driver, Eventmanagementpage.class);

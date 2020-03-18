@@ -7,4 +7,26 @@
       <class name="Com.E2M.CMS_Event2MobileTest.AppBranding"/>
     </classes>
   </test> <!-- Test -->
+  <test name="Test(failed)">
+    <classes>
+      <class name="Com.E2M.CMS_Event2MobileTest.AppBranding">
+        <methods>
+          <include name="configBm"/>
+          <include name="configAm"/>
+          <include name="CMS_E2MTest_Theme_Splash_Background_Banner_1TC014"/>
+          <include name="configBc"/>
+          <include name="configAc"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.AppBranding -->
+      <class name="Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent">
+        <methods>
+          <include name="configBm"/>
+          <include name="configAm"/>
+          <include name="CMS_E2MTest_disclaimer_TC014"/>
+          <include name="configBc"/>
+          <include name="configAc"/>
+        </methods>
+      </class> <!-- Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent -->
+    </classes>
+  </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

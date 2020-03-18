@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
  
@@ -212,7 +214,14 @@ import org.testng.asserts.SoftAssert;
 		        robot.keyRelease(KeyEvent.VK_ENTER);
 		        robot.delay(150);
 		    }
-		    
+  		    public void testMethod() {
+		        Reporter.setEscapeHtml(false);
+		        Reporter.log("<a href='http://www.google.com'><font color='red'>Open Google</font></a>", true);
+		        String currentDir = "file://" + new File(System.getProperty("user.dir")).getAbsolutePath() + File.separator + "pom"+ ".xml";
+		        Reporter.log("<a href='" + currentDir + "'><font color='green'>View Pom file</font></a>", true);
+
+		        }
+ 		    
 		    
 
 }

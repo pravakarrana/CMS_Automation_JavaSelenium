@@ -14,9 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Iterator;
-
-import Com.E2M.GenericLibraries.Baseclass_libraries;
+ import Com.E2M.GenericLibraries.Baseclass_libraries;
 import net.sourceforge.htmlunit.corejs.javascript.commonjs.module.provider.ParsedContentType;
  
 public class EventInfopage extends Baseclass_libraries{

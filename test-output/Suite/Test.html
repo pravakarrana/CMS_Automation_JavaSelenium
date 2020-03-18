@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/2/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Mar 10 13:15:51 IST 2020</td>
+<td>Started on:</td><td>Fri Mar 13 13:27:45 IST 2020</td>
 </tr>
-<tr><td>Total time:</td><td>398 seconds (398638 ms)</td>
+<tr><td>Total time:</td><td>54 seconds (54399 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
@@ -76,15 +76,52 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='Com.E2M.CMS_Event2MobileTest.AppBranding.CMS_E2MTest_Theme_Splash_Background_Banner_1TC014()'><b>CMS_E2MTest_Theme_Splash_Background_Banner_1TC014</b><br>Test class: Com.E2M.CMS_Event2MobileTest.AppBranding<br/>
-<a href="#Output-34073107" onClick='toggleBox("Output-34073107", this, "Show output", "Hide output");'>Show output</a>
+<a href="#Output-1262110193" onClick='toggleBox("Output-1262110193", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-34073107" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-34073107">
-2020-2021 for Sanity Event available <br/>
+<a href="#Output-1262110193" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1262110193">
+New Server Change Event on 13th March Event not available <br/>
 </div>
 </td>
-<td></td>
-<td>202</td>
+<td><div><pre>java.lang.AssertionError: expected [true] but found [false]
+	at Com.E2M.ObjectRepository.Venuepage.ClickParticularEvent(Venuepage.java:173)
+	at Com.E2M.CMS_Event2MobileTest.AppBranding.CMS_E2MTest_Theme_Splash_Background_Banner_1TC014(AppBranding.java:18)
+... Removed 30 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1262110193", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1262110193'><pre>java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:305)
+	at org.testng.Assert.assertEquals(Assert.java:315)
+	at Com.E2M.ObjectRepository.Venuepage.ClickParticularEvent(Venuepage.java:173)
+	at Com.E2M.CMS_Event2MobileTest.AppBranding.CMS_E2MTest_Theme_Splash_Background_Banner_1TC014(AppBranding.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:152)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:57)
+</pre></div></td>
+<td>1</td>
 <td>Com.E2M.CMS_Event2MobileTest.AppBranding@f6c48ac</td></tr>
 <tr>
 <td title='Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent.CMS_E2MTest_disclaimer_TC014()'><b>CMS_E2MTest_disclaimer_TC014</b><br>Test class: Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent<br/>
@@ -92,19 +129,48 @@ function toggleAllBoxes() {
 
 <a href="#Output-446445803" onClick="toggleAllBoxes();">Show all outputs</a>
 <div class='log' id="Output-446445803">
-2020-2021 for Sanity Event available <br/>
-Tutorial saved successfully.<br/>
-Sucessfully created Disclaimer<br/>
-Latitude : 22.4838004<br/>
-Longitude : 88.3379329<br/>
-Postal Code : 700082<br/>
-City : Kolkata<br/>
-Country : 76<br/>
-SocialLink added Sucessfully<br/>
+New Server Change Event on 13th March Event not available <br/>
 </div>
 </td>
-<td></td>
-<td>130</td>
+<td><div><pre>java.lang.AssertionError: expected [true] but found [false]
+	at Com.E2M.ObjectRepository.Venuepage.ClickParticularEvent(Venuepage.java:173)
+	at Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent.CMS_E2MTest_disclaimer_TC014(E2E_AboutEvent.java:24)
+... Removed 30 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace446445803", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace446445803'><pre>java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:305)
+	at org.testng.Assert.assertEquals(Assert.java:315)
+	at Com.E2M.ObjectRepository.Venuepage.ClickParticularEvent(Venuepage.java:173)
+	at Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent.CMS_E2MTest_disclaimer_TC014(E2E_AboutEvent.java:24)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:152)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:57)
+</pre></div></td>
+<td>1</td>
 <td>Com.E2M.CMS_Event2MobileTest.E2E_AboutEvent@464bee09</td></tr>
 </table><p>
 </body>

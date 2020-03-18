@@ -72,7 +72,7 @@ public class JavaScriptExecutorConcept extends Baseclass_libraries {
      }
      public static void scrollIntoParticularElement(){
      	JavascriptExecutor js = ((JavascriptExecutor) driver);
-    	js.executeScript("window.scrollBy(0,800)");
+    	js.executeScript("window.scrollBy(0,100)");
      }
   
 }

@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 	      */
         public static void waitforpageToload(WebDriver driver)
         {
-	     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	     driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         }
          /**
           * @ wait for any element is available in gui

@@ -8,7 +8,9 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -42,13 +44,28 @@ import bsh.Console;
       private WebElement clickonappBranding;	 
      	
       @FindBy(xpath="//div[@class='sub-menu event-menu']//ul//li//a[contains(text(),'App Menu')]")
-      private WebElement clickonappMenu;
+      private WebElement clickonappMenu; 
+      
+      @FindBy(xpath=".//section[contains(@class,'pushmenu-toggle')]//a[text()='Manage Menu Items']")
+      private WebElement clickonManageMenuItem; 
+      
+      @FindBy(xpath="//select[contains(@name,'Categories')]")
+      private WebElement CategorymanageMenu; 
+      
+      @FindBy(xpath=".//table[contains(@id,'gvMenu')]//tbody//tr//td[1]//a")
+      private List<WebElement> CheckAgendamenu; 
+      
+      @FindBy(xpath=".//table[contains(@id,'gvMenu')]//tbody//tr//td[5]//input")
+      private List<WebElement> CheckAgendamenuSelected;
       
       @FindBy(xpath="//div[@class='sub-menu event-menu']//ul//li//a[text()='Resources']")
       private WebElement clickonResourse; 
       
       @FindBy(xpath="//div[contains(@class,'new-clpshdr')]//span")
-      private WebElement clickonAddnewResourse; 
+      private WebElement clickonAddnewResourse;  
+      
+      @FindBy(xpath="//div[@class='nwdrag-here']//a[contains(@id,'upfile')]")
+      private WebElement clickonAddnewResoursefile;
       
       @FindBy(xpath="//select[contains(@name,'ddlResourceType')]")
       private WebElement SearchResourseType;
@@ -201,7 +218,7 @@ import bsh.Console;
       private WebElement importbanner7;  
 	  
 	  @FindBy(xpath="//input[@value='Add Banner']")
-      private WebElement AddBanner;
+      private WebElement AddBanner;//input[@id='txtUsername']
 	  
 	  
 	  
@@ -779,15 +796,15 @@ import bsh.Console;
  	     public void navigateResourse() {
  	    	clickonResourse.click();
  	     } 
-  	     public void SearchresourseType(String title,String link) throws Throwable {
+   	     public void SearchresourseLink(String title,String link) throws Throwable {
    	    	    Select sel=new Select(SearchResourseType);
   	    	    SearchResourseType.click();
   	    	    sel.selectByVisibleText("Link");
   	    	    Thread.sleep(3000);
   	    	  try{ 
   	    		 boolean flag=true;
-  	    	     if(Norecordsfound.getText().contains("No Records Found.")){
-      	            System.out.println(ConsoleColors.ANSI_RED + Norecordsfound.getText() + "==>.Please Add Resourses" +ConsoleColors.ANSI_RESET +flag);
+   	    	     if(Norecordsfound.getText().contains("No Records Found.")){
+      	            System.out.println(ConsoleColors.ANSI_RED + Norecordsfound.getText() + "==>.Please Add Link Resourses" +ConsoleColors.ANSI_RESET +flag);
       	            clickonAddnewResourse.click();
       	            Select sele=new Select(ResourseType);
   	  	            ResourseType.click();
@@ -810,47 +827,178 @@ import bsh.Console;
   	    	     }
   	    	  }catch(Exception e){
    	    	  }finally{
-      	    	 System.out.println(ConsoleColors.ANSI_GREEN+ AllResourses.getAttribute("value") + " ==>> Resourses are available "+ConsoleColors.ANSI_RESET);   	    	     
-   	    	   }
-   	    	}
- 
-//   	    	  try{ 
-//  	    		 boolean flag=true;
-//  	    	     if(AllResourses.getAttribute("value").contains(AllResourses.getAttribute("value"))){
-//  	    	    	System.out.println(ConsoleColors.ANSI_RED+ AllResourses.getAttribute("value") + " ==>> Resourses are available "+ConsoleColors.ANSI_RESET);   	    	     }
-//  	    	  }catch(Exception e){
-//   	    	  }
-    
-  	     public void SelectResourseType() throws Throwable {
-   	    	//String resoursetype=flib.getexcelData("EventSetup", 1, 16);
-   	    	Select sel=new Select(ResourseType);
-  	    	ResourseType.click();
-  	    	sel.selectByVisibleText("Link");
-  	    	Actions act=new Actions(driver);
-  	    	act.moveToElement(ResourseTitle);
-  	    	Thread.sleep(2000);
-  	 	 } 
- 	     public void ResourseTitle(String title) throws Throwable {
- 	  	        Actions act=new Actions(driver);
-	  	        act.moveToElement(ResourseTitle).click().build().perform();	   
- 	    	    ResourseTitle.sendKeys(title);
-    	 }
- 	     public void Resourselink(String link) throws Throwable {
- 	    	 ResourseLink.sendKeys(link);
-    	 } 
- 	     public void saveResourselink() throws Throwable {
- 	    	 String resoursetitle=flib.getexcelData("EventSetup", 1, 17);
-  	    	 SaveResourseLink.click();
-    	    	 
-   	    	 Alert alt=driver.switchTo().alert();
-   	    	 String d=alt.getText();
-   	    	 System.out.println(d);
+    	    		if(AllResourses.getAttribute("value").contains(title)){
+        	    	System.out.println(ConsoleColors.ANSI_GREEN+ AllResourses.getAttribute("value") + " ==>> Link Resourses are available "+ConsoleColors.ANSI_RESET);   	    	     
+    	    	    Reporter.log(AllResourses.getAttribute("value") + " ==>> Link Resourses are available ",true);
+    	    		}
+   	    	  }
+   	     }
+   	     public void SearchresourseFile() throws Throwable {
+   	    	    WebDriverUtils.waitforElementpresent(driver, SearchResourseType);
+   	    	    
+	    	    Select sel=new Select(SearchResourseType);
+    	        SearchResourseType.click();
+    	        sel.selectByVisibleText("File");
+  	    			 
+    	     try{ 
+    		    boolean flag=true;
+    		   
+	    	    if(Norecordsfound.getText().contains("No Records Found.")){
+	            System.out.println(ConsoleColors.ANSI_RED + Norecordsfound.getText() + "==>.Please Add File Resourses" +ConsoleColors.ANSI_RESET +flag);
+   	            
+   	            Select sele=new Select(ResourseType);
+ 	            ResourseType.click();
+ 	            sele.selectByVisibleText("File");
+
+                WebDriverUtils.waitforElementpresent(driver, clickonAddnewResoursefile);
+                clickonAddnewResoursefile.click();
+                
+                String fileresourse=flib.getexcelData("EventSetup", 12, 12);
+                flib.uploadFileWithRobot(fileresourse);
+  	            
+                WebDriverWait w=new WebDriverWait(driver, 60);
+                w.until(ExpectedConditions.alertIsPresent());
+         
+  	   	         Alert alt=driver.switchTo().alert();
+	   	         String s=alt.getText();
+	   	         System.out.println(s);
+	   	        
+	   	         
+	   	         Assert.assertEquals(alt.getText(), "Total : 1 file(s) uploaded successfully.");
+	    	     alt.accept();
+	    	     System.out.println(alt.getText());
+    	         }
+    	     }catch(Exception e){
+	         }finally{
+	    		  String filereso=AllResourses.getAttribute("value");
+	    		  SoftAssert as=new SoftAssert();
+	    		  as.assertEquals(AllResourses.getAttribute("value"), filereso);
+     	    	  System.out.println(ConsoleColors.ANSI_GREEN+ AllResourses.getAttribute("value") + " ==>> File Resourses are available "+ConsoleColors.ANSI_RESET);   	    	     
+ 	              Reporter.log(AllResourses.getAttribute("value") + " ==>> File Resourses are available ",true);
+	         }
+     	 }
+   	     public void SearchresourseVideo() throws Throwable {
+	    	    WebDriverUtils.waitforElementpresent(driver, SearchResourseType);
+   	            Select sel=new Select(SearchResourseType);
+	            SearchResourseType.click();
+	            sel.selectByVisibleText("Video");
+    			 
+	       try{ 
+		      boolean flag=true;
+   	          if(Norecordsfound.getText().contains("No Records Found.")){
+              System.out.println(ConsoleColors.ANSI_RED + Norecordsfound.getText() + "==>.Please Add video Resourses" +ConsoleColors.ANSI_RESET +flag);
+	            
+	          Select sele=new Select(ResourseType);
+              ResourseType.click();
+              sele.selectByVisibleText("File");
+
+              WebDriverUtils.waitforElementpresent(driver, clickonAddnewResoursefile);
+              clickonAddnewResoursefile.click();
+          
+              String fileresourse=flib.getexcelData("EventSetup", 13, 12);
+              flib.uploadFileWithRobot(fileresourse);
+            
+              WebDriverWait w=new WebDriverWait(driver, 60);
+              w.until(ExpectedConditions.alertIsPresent());
+   
+   	           Alert alt=driver.switchTo().alert();
+ 	           String s=alt.getText();
+ 	           System.out.println(s);
+ 	        
+ 	         
+ 	           Assert.assertEquals(alt.getText(), "Total : 1 file(s) uploaded successfully.");
+  	           alt.accept();
+  	           System.out.println(alt.getText());
+	           }
+	       }catch(Exception e){
+           }finally{
+  		       String filereso=AllResourses.getAttribute("value");
+  		       SoftAssert as=new SoftAssert();
+  		       as.assertEquals(AllResourses.getAttribute("value"), filereso);
+	    	   System.out.println(ConsoleColors.ANSI_GREEN+ AllResourses.getAttribute("value") + " ==>> Video Resourses are available "+ConsoleColors.ANSI_RESET); 
+	    	   Reporter.log(AllResourses.getAttribute("value") + " ==>> Video Resourses are available",true);
+            }
+	     }
+   	     public void NavigateToManageAMenuItem(){
+   	    	clickonManageMenuItem.click();
+   	     }
+   	     public void SelectCategoryManageMenu(){
+   	    	Select sel=new Select(CategorymanageMenu);
+   	    	CategorymanageMenu.click();
+   	    	sel.selectByVisibleText("Agenda");
+   	     }
+   	     public void CheckAgenda() throws Throwable{
    	    	 
-   	    	 
-   	    	 SoftAssert as=new SoftAssert();
-   	    	 as.assertEquals(alt.getText(), "Resource saved successfully.");
- 	    	  
-       	 }
-// 	    JavaScriptExecutorConcept.flash(SaveResourseLink, driver);
-//	    	 JavaScriptExecutorConcept.changeColor("rgb(0,200,0)", SaveResourseLink, driver);
+   	     List<WebElement> wb=driver.findElements(By.xpath(".//table[contains(@id,'gvMenu')]//tbody//tr//td[1]//a"));
+   	     List<WebElement> wb1=driver.findElements(By.xpath(".//table[contains(@id,'gvMenu')]//tbody//tr//td[5]//input"));
+   	     
+//    	  boolean flag = false;
+// 		  for(WebElement item : wb)
+//		  {
+// 			List<WebElement> wb11=driver.findElements(By.xpath(".//table[contains(@id,'gvMenu')]//tbody//tr//td[5]//input"));
+// 			for(WebElement ww:wb11){
+// 				//  + ": " +ww.getAttribute("data-tooltip")
+   	     
+// 			if(item.getText().equals("Exhibitors")) {    		
+// 				System.out.println(item.getText() + ": " +ww.getAttribute("data-tooltip"));
+// 				flag=true;
+//  			}
+// 			else if(item.getText().equals("Schedule")){
+// 				System.out.println(item.getText()  + ": " +ww.getAttribute("data-tooltip"));
+// 				flag=true;
+//  			}
+//            else if(item.getText().equals("Speakers")){
+//             	System.out.println(item.getText()  + ": " +ww.getAttribute("data-tooltip"));
+//             	flag=true;
+//  			}
+//            else if(item.getText().equals("Sponsors")){
+//             	System.out.println(item.getText()  + ": " +ww.getAttribute("data-tooltip"));
+//             	flag=true;
+//             }
+//            else if(item.getText().equals("Survey")){
+//             	System.out.println(item.getText()  + ": " +ww.getAttribute("data-tooltip"));
+//             	flag=true;
+//             }
+//			 break;
+//    		    }
+// 			// break;
+// 		  }
+//   	 
+ 		  
+   	 
+  	     
+   	    	 for(int j=0;j<=wb.size()-1;j++){
+       	       for(int i=0;i<=wb1.size()-1;i++){
+        	    	
+       	    	 String firstindex = wb.get(0).getText(); 
+       	    	 String secondindex= wb.get(1).getText();  
+       	    	 String thirdindex = wb.get(2).getText();
+       	    	 String fourthindex= wb.get(3).getText();
+       	    	 String fifthindex = wb.get(4).getText();
+       	    	 
+       	    	 String firstindexPublish = wb1.get(0).getAttribute("data-tooltip");
+       	    	 String secondindexPublish= wb1.get(1).getAttribute("data-tooltip"); 
+       	    	 String thirdindexPublish = wb1.get(2).getAttribute("data-tooltip");
+       	    	 String fourthindexPublish= wb1.get(3).getAttribute("data-tooltip");
+       	    	 String fifthindexPublish = wb1.get(4).getAttribute("data-tooltip");
+       	    	 
+//       	    	 
+//        	     flib.WritesetexcelData("DataCompaire1", 1, 0, firstindexPublish);
+//        	     flib.WritesetexcelData("DataCompaire1", 1, 1, secondindexPublish); 
+//       	    	 flib.WritesetexcelData("DataCompaire1", 1, 2, thirdindexPublish); 
+//       	    	 flib.WritesetexcelData("DataCompaire1", 1, 3, fourthindexPublish); 
+//      	    	 flib.WritesetexcelData("DataCompaire1", 1, 4, fifthindexPublish); 
+       	    	   
+      	    		System.out.println(firstindex  + " : " + firstindexPublish);
+     	    		System.out.println(secondindex + " : " + secondindexPublish);
+     	    		System.out.println(thirdindex  + " : " + thirdindexPublish);
+     	    		System.out.println(fourthindex + " : " + fourthindexPublish);
+     	    		System.out.println(fifthindex  + " : " + fifthindexPublish);
+     	    		break;
+       	          }
+     	    		break;
+     	    	}
+       	   
+   	    	
+   	     }
    }

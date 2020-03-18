@@ -3,6 +3,7 @@ package Com.E2M.GenericLibraries;
 public class ConsoleColors {
     // Reset
 	public static final String ANSI_RESET = "\u001B[0m";;  // Text Reset
+	public static final String RESET = "\033[0m"; 
     
     //public static final String ANSI_RED = "\u001B[31m";
   

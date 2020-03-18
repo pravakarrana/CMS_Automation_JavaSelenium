@@ -27,17 +27,13 @@ import Com.E2M.ObjectRepository.Venuepage;
                           CKresouse.navigateResourse();
 	  
 	       EventSetupPage selectresourse=PageFactory.initElements(driver, EventSetupPage.class);
-	                      selectresourse.SearchresourseType(resoursetitle, resoursetilink); 
+	                      selectresourse.SearchresourseLink(resoursetitle, resoursetilink); 
  	                      
-//	       EventSetupPage selecttitle=PageFactory.initElements(driver, EventSetupPage.class);
-//	                      selecttitle.ResourseTitle(resoursetitle);
-//	                      
-//	       EventSetupPage selectlink=PageFactory.initElements(driver, EventSetupPage.class);
-//	                      selectlink.Resourselink(resoursetilink);
-//	                      
-//	       EventSetupPage savelink=PageFactory.initElements(driver, EventSetupPage.class);
-//	                      savelink.saveResourselink();        
-		   
+	       EventSetupPage selectresoursefl=PageFactory.initElements(driver, EventSetupPage.class);
+	                      selectresoursefl.SearchresourseFile(); 
+	                      
+	       EventSetupPage selectresoursevd=PageFactory.initElements(driver, EventSetupPage.class);
+	                      selectresoursevd.SearchresourseVideo();
 		   
 		   
 		   
